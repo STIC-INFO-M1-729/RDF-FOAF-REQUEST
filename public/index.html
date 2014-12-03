@@ -37,12 +37,12 @@
       <script src="/libs/bootstrap-ui/ui-bootstrap-tpls-0.11.2.js"></script>
       <script src="libs/angular-ui-select/dist/select.min.js"></script>      
 
-      <script src="js/deck.js"></script> <!-- load up deck module -->
-      <script src="js/auth_module.js"></script> <!-- load the authentication module -->
-      <script src="js/modal.js"></script> <!-- load the modal service -->
-      <script src="js/contacts.js"></script> <!-- load the contact module & controller -->
-      <script src="js/user.js"></script> <!-- load up user module -->
-      <script src="js/pop_app.js"></script> <!-- load our main application -->
+      <!-- <script src="js/deck.js"></script> <!-- load up deck module -->
+      <!--<script src="js/auth_module.js"></script> <!-- load the authentication module -->
+      <!--<script src="js/modal.js"></script> <!-- load the modal service -->
+      <!--<script src="js/contacts.js"></script> <!-- load the contact module & controller -->
+      <!--<script src="js/user.js"></script> <!-- load up user module -->
+      <script src="js/rdffoafrequest.js"></script> <!-- load our main application -->
 
   </head>
   <!-- SET THE CONTROLLER -->
@@ -51,12 +51,12 @@
         <div class="header pull-right" ng-controller="menuCtrl">
             <span class="text-center text-muted">{{welcome}}</span>
             <ul class="nav nav-pills">
-                <li ng-show="!isAuthenticated"><a href="#/signup">sign up for a new account</a></li>
+                <!-- <li ng-show="!isAuthenticated"><a href="#/signup">sign up for a new account</a></li>
                 <li ng-show="!isAuthenticated"><a href="#/login">login</a></li>
                 <li ng-show="adminUser"><a href="#/admin">admin</a></li>
                 <li ng-show="isAuthenticated"><a href="#/contacts">contacts</a></li>
                 <li ng-show="isAuthenticated"><a href="#/decks">decks</a></li>
-                <li ng-show="isAuthenticated"><a ng-click="logout()" href="">log out</a></li>
+                <li ng-show="isAuthenticated"><a ng-click="logout()" href="">log out</a></li> -->
             </ul>
         </div>
         <h3 class="text-muted">Pop!</h3>

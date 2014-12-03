@@ -1,20 +1,20 @@
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
-var models = require('./models/pop_models');
-var User = models.User;
-var Contact = models.Contact;
+//var models = require('./models/pop_models');
+//var User = models.User;
+//var Contact = models.Contact;
 
 module.exports = function(app) {
     app.secretToken = "Calopea Rocks!";
-    require('./routes/user.js')(app);
-    require('./routes/deck.js')(app);
-    require('./routes/linkedin.js')(app);
-    require('./routes/google.js')(app);
+    //require('./routes/user.js')(app);
+    //require('./routes/deck.js')(app);
+    //require('./routes/linkedin.js')(app);
+    //require('./routes/google.js')(app);
 
 
     // Pop! authentification
-    app.post('/auth', function(req, res) {
+    /*app.post('/auth', function(req, res) {
         var username = req.body.username || '';
         var password = req.body.password || '';
 
@@ -38,5 +38,5 @@ module.exports = function(app) {
                 return res.json({token:token});
             });
         });
-    });
+    });*/
 };

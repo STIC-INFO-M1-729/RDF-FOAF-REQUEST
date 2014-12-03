@@ -1,4 +1,4 @@
-var app = angular.module('popApp', ['ngRoute', 'authModule', 'userModule', 'deckModule', 'contactModule']);
+var app = angular.module('popApp', []); //'ngRoute', 'authModule', 'userModule', 'deckModule', 'contactModule'
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -6,7 +6,7 @@ app.config(['$routeProvider',
         when('/home', {
             templateUrl: 'partials/home.html'
         }).
-        when('/login', {
+        /*when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'AuthenticationCtrl'
         }).
@@ -33,13 +33,13 @@ app.config(['$routeProvider',
             templateUrl: 'partials/contacts.html',
             controller : 'contactController',
             access: { requiredAuthentication: true }
-        }).
+        }).*/
         otherwise({
             redirectTo: '/home'
         });
 }]);
 
-app.run(function($rootScope, $location, $window, AuthenticationService) {
+/*app.run(function($rootScope, $location, $window, AuthenticationService) {
     $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
         //redirect only if both isAuthenticated is false and no token is set
         if (nextRoute !== null
@@ -52,16 +52,16 @@ app.run(function($rootScope, $location, $window, AuthenticationService) {
                 $location.path("/login");
             }
     });
-});
+});*/
 
 app.controller('menuCtrl', ['$scope', '$window', '$location', 'AuthenticationService', 
                 function($scope, $window, $location, Auth){
     
     $scope.welcome = 'Pop rocks';
-    $scope.isAuthenticated = Auth.isAuthenticated();
-    $scope.adminUser = Auth.is_admin();
+    //$scope.isAuthenticated = Auth.isAuthenticated();
+    //$scope.adminUser = Auth.is_admin();
 
-    $scope.$on("auth_status", function (event, args) {
+    /*$scope.$on("auth_status", function (event, args) {
         $scope.isAuthenticated = args.value;
         $scope.adminUser = Auth.is_admin();
         $scope.update_welcome();
@@ -81,12 +81,12 @@ app.controller('menuCtrl', ['$scope', '$window', '$location', 'AuthenticationSer
         else
             $scope.welcome = 'Welcome !';
     };
-    $scope.update_welcome();
+    $scope.update_welcome();*/
 }]);
 
 
 //this is used to parse the profile
-function url_base64_decode(str) {
+/*function url_base64_decode(str) {
   var output = str.replace('-', '+').replace('_', '/');
   switch (output.length % 4) {
     case 0:
@@ -101,5 +101,5 @@ function url_base64_decode(str) {
       throw 'Illegal base64url string!';
   }
   return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
-}
+}*/
 
