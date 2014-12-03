@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="popApp" lang="en">
+<html ng-app="popApp" lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,25 +49,32 @@
   <body>
     <div class="container">
         <div class="header pull-right" ng-controller="menuCtrl">
-            <span class="text-center text-muted">{{welcome}}</span>
-            <ul class="nav nav-pills">
-                <!-- <li ng-show="!isAuthenticated"><a href="#/signup">sign up for a new account</a></li>
-                <li ng-show="!isAuthenticated"><a href="#/login">login</a></li>
-                <li ng-show="adminUser"><a href="#/admin">admin</a></li>
-                <li ng-show="isAuthenticated"><a href="#/contacts">contacts</a></li>
-                <li ng-show="isAuthenticated"><a href="#/decks">decks</a></li>
-                <li ng-show="isAuthenticated"><a ng-click="logout()" href="">log out</a></li> -->
+            <!--<span class="text-center text-muted">{{welcome}}</span>
+           <ul class="nav nav-pills">
+               <li ng-show="!isAuthenticated"><a href="#/signup">sign up for a new account</a></li>
+               <li ng-show="!isAuthenticated"><a href="#/login">login</a></li>
+               <li ng-show="adminUser"><a href="#/admin">admin</a></li>
+               <li ng-show="isAuthenticated"><a href="#/contacts">contacts</a></li>
+               <li ng-show="isAuthenticated"><a href="#/decks">decks</a></li>
+               <li ng-show="isAuthenticated"><a ng-click="logout()" href="">log out</a></li> -->
+
+
             </ul>
         </div>
-        <h3 class="text-muted">Pop!</h3>
+        <h3 class="text-muted text-center col-md-12 ">Find !</h3>
     </div>
     <br/>
+    <div class="">
+    <div id="searchInput" class="col-md-7 col-md-offset-1"><input type="text" class="form-control" id="" placeholder="Search" ng-model="formData.Query"></div>
+    <button type="submit" class="btn btn-primary btn-lg col-md-3 " ng-click="query()">Ok</button>
+    </div>
 
-    <div ng-view></div>
+    <div ng-view>
+    </div>
     <!-- footer -->
-    <div class="text-center text-muted">
+    <div class="text-center text-muted navbar-fixed-bottom">
         <div class="col-md-9">
-            <p>© Happily brought to you by <a href="http://www.calopea.com" target="_blank">Calopea</a>.</p>
+            <p>© Happily brought to you by Celine, Remi, Lucas, Matthew, François.</p>
         </div>
         <div class="col-md-3">v0.1.3</div>
     </div>
