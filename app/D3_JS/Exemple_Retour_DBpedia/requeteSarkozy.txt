@@ -1,0 +1,119 @@
+{ '0': null,
+  '1':
+   { head:
+      { link: [],
+        vars: [ 'person', 'birth', 'name' ] },
+     results:
+      { distinct: false,
+        ordered: true,
+        bindings:
+         [ { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Nicolas_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1955-01-28+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Nicolas Sarkozy' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Nicolas_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1955-01-28+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Sarkozy, Nicolas' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Olivier_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1969-05-26+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Olivier Sarkozy' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Olivier_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1969-05-26+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Sarkozy, Olivier' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Jean_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1986-09-01+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Jean Sarkozy' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Jean_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1986-09-01+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Sarkozy, Jean' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Guillaume_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1951-06-18+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Guillaume Sarkozy' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Guillaume_Sarkozy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1951-06-18+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Sarkozy, Guillaume' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Andr%C3%A1s_S%C3%A1rk%C3%B6zy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1941-01-16+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Andras Sarkozy' } },
+           { person:
+              { type: 'uri',
+                value: 'http://dbpedia.org/resource/Andr%C3%A1s_S%C3%A1rk%C3%B6zy' },
+             birth:
+              { type: 'typed-literal',
+                datatype: 'http://www.w3.org/2001/XMLSchema#date',
+                value: '1941-01-16+02:00' },
+             name:
+              { type: 'literal',
+                'xml:lang': 'en',
+                value: 'Sarkozy, Andras' } } ] } } }
