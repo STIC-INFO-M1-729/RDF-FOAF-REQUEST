@@ -8,37 +8,6 @@ var endpoint = 'http://dbpedia.org/sparql';
 var EventEmitter = require('events').EventEmitter;
 var termine = new EventEmitter();
 
-//Création d'une recherche avec une relation donnée
-function block(relation,recherche) {
-	var askedLabel = "";
-	if (recherche != "") {
-		askedLabel = "?s rdfs:label \"" + recherche + "\"@en. ";
-	}
-	return "{" +
-		"?s " + relation + " ?o. " +
-		askedLabel +
- 		"?s rdfs:label ?slabel. " +
- 		relation + " rdfs:label ?rlabel. " +
- 		"?o rdfs:label ?olabel. " +
-		"?o rdf:type foaf:Person. " +
-		"FILTER(lang(?slabel) = 'en')." +
-		"FILTER(lang(?rlabel) = 'en')." +
-		"FILTER(lang(?olabel) = 'en')." +
-		"}" +
-		"UNION" +
-		"{" +
-		"?s " + relation + " ?o. " +
-		askedLabel +
- 		"?s rdfs:label ?slabel. " +
- 		relation + " rdfs:label ?rlabel. " +
- 		"?o rdfs:label ?olabel. " +
-		"?s rdf:type foaf:Person. " +
-		"FILTER(lang(?slabel) = 'en')." +
-		"FILTER(lang(?rlabel) = 'en')." +
-		"FILTER(lang(?olabel) = 'en')." +
-		"}";
-}
-
 //Formulaire proposant les options possibles
 var form = '<form method="post">' + 
 				'<h2>Entrez un mot recherché (ou rien du tout si vous voulez centrer la recherche sur les relations)</h2>' +
@@ -121,59 +90,43 @@ var form = '<form method="post">' +
 				'<input type="submit" />' + 
 				'</form>';
 
-//Construire requete :
-function construireRequete(options, recherche) {
-	var query = "SELECT DISTINCT ?slabel ?rlabel ?olabel FROM <http://dbpedia.org> WHERE { {} ";
-	if (!Array.isArray(options)) { query += "UNION" + block(options,recherche);	 }
-	else { 
-		options.forEach(function(opt) {
-			query += "UNION" + block(opt,recherche);	
-		});
-	}
-	query += "} LIMIT 5";
-	return query;
-}
-
-function effectuerRequete(requete,recherche) {
-	var client = new SparqlClient(endpoint);
-	var retour;
-	client.query(requete).execute(function(error, results) {
-		console.log("étape numéro : 0");
-		console.log(results.results.bindings);
-		effectuerSousRequete(results.results.bindings,results.results.bindings.length - 1,recherche);
-	});
-}
-
-function effectuerSousRequete(resultat,etape,recherche) {
-	if (etape >= 0) {
-		var client = new SparqlClient(endpoint);
-		var retour;
-		if (resultat[etape].slabel.value == recherche) {
-			var tmpquery = construireRequete("?r", resultat[etape].olabel.value);
-		}
-		else {
-			var tmpquery = construireRequete("?r", resultat[etape].slabel.value);
-		}
-		client.query(tmpquery).execute(function(error, results) {
-			console.log("étape numéro : " + etape);
-			console.log(tmpquery);
-			resultat = resultat.concat(results.results.bindings);
-			console.log(resultat);
-			if (etape == 0) {
-				console.log("Résultat final :")
-				console.log(JSON.stringify(resultat));
-				//$("#resultat").html(JSON.stringify(resultat));
-				termine.emit('finit',JSON.stringify(resultat));
-			}
-			effectuerSousRequete(resultat,etape - 1,recherche);
-		});
-	}
-}
-
 //Requête GET : on affiche le formulaire
 app.get('/', function (req, res) {
   res.send(form);
 });
+
+function construireRequete(options,recherche) {
+	var query = "" 
+	+ "SELECT DISTINCT ?slabel ?rlabel ?olabel ?r1label ?o1label ?r2label ?o2label WHERE {"
+  + "?s ?r ?o. "
+  + "?o ?r1 ?o1. "
+  + "?o1 ?r2 ?o2. "
+  + "?s rdfs:label \"" + recherche + "\"@en. "
+  + "?s rdfs:label ?slabel. "
+  + "?r rdfs:label ?rlabel. "
+  + "?o rdfs:label ?olabel. "
+  + "?r1 rdfs:label ?r1label. "
+  + "?o1 rdfs:label ?o1label. "
+  + "?r2 rdfs:label ?r2label. "
+  + "?o2 rdfs:label ?o2label. "
+  + "?o1 rdf:type foaf:Person. "
+  + "?o2 rdf:type foaf:Person. "
+  + "FILTER(lang(?slabel) = 'en'). "
+  + "FILTER(lang(?rlabel) = 'en'). "
+  + "FILTER(lang(?olabel) = 'en'). "
+  + "FILTER(lang(?r1label) = 'en'). "
+  + "FILTER(lang(?o1label) = 'en'). "
+  + "FILTER(lang(?r2label) = 'en'). "
+  + "FILTER(lang(?o2label) = 'en'). "
+	+ "} LIMIT 10";
+}
+
+function effectuerRequete(requete) {
+	var client = new SparqlClient(endpoint);
+	client.query(requete).execute(function(error, results) {
+		retour = JSON.stringify(results);
+	});
+}
 
 //Requête POST : Construire et exécuter la requête, afficher les résultats puis afficher le formulaire
 app.post('/', function (req, res) {
@@ -181,9 +134,25 @@ app.post('/', function (req, res) {
 	var client = new SparqlClient(endpoint);
 	var query = construireRequete(req.body.options, req.body.recherche);
 
-	effectuerRequete(query,req.body.recherche);
+	effectuerRequete(query);
 
-	termine.on('finit',function(message) { res.send('<div id="resultat">' + message + '</div>' + form); });
+	termine.on('finit',function(message) { 
+		displayResult = message;
+		/*displayResult = '<table><tr><th>s</th><th>---</th><th>r</th><th>---</th><th>o</th><th>---</th><th>r1</th><th>---</th><th>o1</th><th>---</th><th>r2</th><th>---</th><th>o2</th></tr>';
+		resultat = JSON.parse(message);
+		resultat.forEach(function(entry) {
+				displayResult += '<tr><td>' + entry.slabel.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.rlabel.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.olabel.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.r1label.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.o1label.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.r2label.value + '</td><td>&nbsp;|&nbsp;</td>';
+				displayResult += '<td>' + entry.o2label.value + '</td></tr>';*/
+		});
+		/*displayResult += '</table>';*/
+		res.send('<div id="resultat">' + displayResult + '</div>' + form); 
+
+	});
 });
 
 

@@ -2,9 +2,12 @@
 //Les id peuvent être des entiers ou des chaines de caractère, au choix
 
 {
+	"relations":[
+		"writer","cinematography","birth place","club","PLACE OF BIRTH","child","period","death place"
+	],
 	"noeuds":[
-		{ "id":1, "nom":"King Lear (1953 TV drama)" },
 		{ "id":2, "nom":"William Shakespeare" },
+		{ "id":1, "nom":"King Lear (1953 TV drama)" },
 		{ "id":3, "nom":"Andrew McCullough" },
 		{ "id":4, "nom":"Australia" },
 		{ "id":5, "nom":"Dalby, Queensland" },
@@ -16,9 +19,7 @@
 		{ "id":11, "nom":"Stratford-upon-Avon" },
 		{ "id":12, "nom":"Kingdom of England" },
 	],
-	"relations":[
-		"writer","cinematography","birth place","club","PLACE OF BIRTH","child","period","death place"
-	],
+
 	"graphe":[
 		{
 			"noeud":1,

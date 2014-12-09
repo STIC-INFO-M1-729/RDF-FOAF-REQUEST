@@ -1,3 +1,6 @@
+//L'ordre et les numéros d'id peuvent différer
+//Les id peuvent être des entiers ou des chaines de caractère, au choix
+
 {
 	"noeuds":[
 		{ "id":1, "nom":"King Lear (1953 TV drama)" },
