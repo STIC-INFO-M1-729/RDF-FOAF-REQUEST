@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser());
 var SparqlClient = require('sparql-client');
 var endpoint = 'http://dbpedia.org/sparql';
+var util = require('util');
 
 //Création d'une recherche avec une relation donnée
 function block(relation,recherche) {
@@ -61,7 +62,7 @@ var form = '<form method="post">' +
 				'<input type="checkbox" name="options" value="<http://dbpedia.org/property/author>" id="author"/>' +
 				'<label for="author">Author</label><br/>' +
 				'<input type="checkbox" name="options" value="<http://dbpedia.org/ontology/executiveProducer>" id="executiveProducer"/>' +
-				'<label for="executiveProducer">Executive Producer</label><br/>' +
+				'<label for="executiveProducer" >Executive Producer</label><br/>' +
 				'<input type="checkbox" name="options" value="<http://dbpedia.org/ontology/artist>" id="performer"/>' +
 				'<label for="performer">Performer</label><br/>' +
 
@@ -152,6 +153,10 @@ app.post('/', function (req, res) {
 				});
 				displayResult += '</table>';
 			}
+
+			//console.log('Resultat : ' + resultat);
+			//console.log('Argument : ');
+			//console.log(util.inspect(arguments, null, 20, true));
 			res.send('Résultats de la requête <strong>' + req.body.recherche + '</strong>: <br/>' +
 				displayResult + form);
 	});

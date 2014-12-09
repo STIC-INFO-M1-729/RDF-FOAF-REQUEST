@@ -20,6 +20,7 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 
 	Decks.get()
 		.success(function(data) {
+		$scope.requests = data;
 	});
 
 	$scope.searchQuery = function(){
