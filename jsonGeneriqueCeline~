@@ -1,0 +1,39 @@
+{
+	"noeuds":[
+		{ "id":1, "nom":"King Lear (1953 TV drama)" },
+		{ "id":2, "nom":"William Shakespeare" },
+		{ "id":3, "nom":"Andrew McCullough" },
+		{ "id":4, "nom":"Australia" },
+		{ "id":5, "nom":"Dalby, Queensland" },
+		{ "id":6, "nom":"Queensland" },
+		{ "id":7, "nom":"Brisbane Broncos" },
+		{ "id":8, "nom":"Queensland" },
+		{ "id":9, "nom":"Susanna Hall" },
+		{ "id":10, "nom":"English Renaissance" },
+		{ "id":11, "nom":"Stratford-upon-Avon" },
+		{ "id":12, "nom":"Kingdom of England" },
+	],
+	"relations":[
+		"writer","cinematography","birth place","club","PLACE OF BIRTH","child","period","death place"
+	],
+	"graphe":[
+		{
+			"noeud":1,
+			"writer":[2],
+			"cinematography":[3]
+		},
+		{
+			"noeud":3,
+			"birth place":[4,5],
+			"club":[7],
+			"PLACE OF BIRTH":[6]
+		},
+		{
+			"noeud":2,
+			"child":[9],
+			"period":[10],
+			"birth place":[11,12],
+			"death place":[11]
+		}
+	]
+}

@@ -1,0 +1,189 @@
+[
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "King Lear (1953 TV drama)"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "writer"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "King Lear (1953 TV drama)"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "cinematography"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Andrew McCullough"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Andrew McCullough"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "birth place"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Australia"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Andrew McCullough"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "birth place"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Dalby, Queensland"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Andrew McCullough"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "club"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Brisbane Broncos"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Andrew McCullough"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "PLACE OF BIRTH"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Queensland"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "child"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Susanna Hall"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "period"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "English Renaissance"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "birth place"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Stratford-upon-Avon"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "birth place"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Kingdom of England"
+        }
+    },
+    {
+        "slabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "William Shakespeare"
+        },
+        "rlabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "death place"
+        },
+        "olabel": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "Stratford-upon-Avon"
+        }
+    }
+]
