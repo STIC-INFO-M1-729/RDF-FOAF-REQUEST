@@ -1,0 +1,29 @@
+<!-- SET THE CONTROLLER -->
+
+<div class="container search" xmlns="http://www.w3.org/1999/html">
+
+    <h3 class="text-center col-md-12 logo ">Find <span>α</span> !</h3>
+    <br/>
+    <form class="form-wrapper cf col-md-6 col-md-offset-3">
+        <input type="text" class=" col-md-10 " placeholder="Search" ng-model="formData.valSearch">
+        <button type="submit" class="btn btn-primary btn-lg col-md-2 " ng-click="goSearch()">Ok</button>
+    </form>
+
+    <h5  class="titleSearch col-md-6 col-md-offset-3">Filtre▾</h5>
+    <!--div filtres -->
+    <div id="lesfiltres" class="col-md-6 col-md-offset-3">
+        <p>TODO</p>
+    </div>
+    <!--div filtre end-->
+    </br><!--toDeleteNext-->
+
+    <h5  class="titleSearch col-md-6 col-md-offset-3">Résultat▾</h5>
+    <!--div result search -->
+    <div id="Result" class="col-md-6 col-md-offset-3" ng-repeat="lsSearch in listeSearch">
+        <li>
+            <a href="">{{lsSearch.label}}</a>test
+        </li>
+    </div>
+    <!--div result search end-->
+
+</div>
