@@ -19,7 +19,9 @@ function mainController($scope, $http) {
 					$scope.valeur = "Recherche effectuée";
 					$scope.jsonp = data;
 					$scope.jsongen = produitToGenerique(data);
-					$scope.jsongraph = generiqueToGraph($scope.jsongen);
+					//$scope.jsongraph = generiqueToGraph($scope.jsongen);
+					var d3_graphe = new D3_GrapheRepresentation();
+					d3_graphe.show($scope.jsongen);
 		  })
 		  .error(function(data) {
 		      console.log('Error: ' + data);

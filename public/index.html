@@ -21,9 +21,12 @@
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="/jquery.tipsy.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script><!-- load d3 -->
     <script src="/app.js"></script>
     <script src="/jsongenerique.js"></script>
-    <script src="/jsongraph.js"></script>
+    <script src="/d3_formatter.js"></script>
+    <script src="/d3_graphe.js"></script>
 
 
 </head>
@@ -38,6 +41,8 @@
 						<div><h2>Json Produit</h2>{{ jsonp }}</div>
 						<div><h2>Json Générique</h2>{{ jsongen }}</div>
 						<div><h2>Json Graph</h2>{{ jsongraph }}</div>
+						<div id="contentCenter" style="width:500px; height:500px;"></div>
+						<div id="wikipedia"></div>
         </div>
 
     </div>
