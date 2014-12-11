@@ -3,7 +3,7 @@
     <form class="form-wrapper cf col-md-6 col-md-offset-3" ng-controller="decksController">
         <input type="text" class=" col-md-10 " placeholder="Search" ng-model="formData.valQuery">
         <button type="submit" class="btn btn-primary btn-lg col-md-2 " ng-click="searchQuery()" >Ok</button>
-
+        {{TempJSON}}
     </form>
     <h5 id="filtres" class="col-md-6 col-md-offset-3">Filtre▾</h5>
     <div id="lesfiltres" class="form-wrapper col-md-6 col-md-offset-3"> <!--- TODO: ajouter tout les filtre --> </div>

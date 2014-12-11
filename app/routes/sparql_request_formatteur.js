@@ -3,7 +3,7 @@
  */
 
 module.exports = function block(relation,recherche) {
-		var askedLabel = "";
+	var askedLabel = "";
 	if (recherche != "") {
 		askedLabel = "?s rdfs:label \"" + recherche + "\"@en. ";
 	}

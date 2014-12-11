@@ -6,8 +6,11 @@ decksModule.factory('Decks', ['$http',function($http) {
 		get : function() {
 			return $http.get('/decks');
 		},
-		getQuery : function(searchData) {
+		getQuerySoft : function(searchData) {
 			return $http.get('/deck/search/' + searchData);
+		},
+		getQueryFull : function(searchName){
+			return $http.get('/deck/search/')
 		}
 	};
 }]);
@@ -20,21 +23,31 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 
 	Decks.get()
 		.success(function(data) {
-		$scope.requests = data;
+
+			$scope.requests = data;
 	});
 
 	$scope.searchQuery = function(){
 
-		Decks.get()
-		.success(function(data) {
-		});
-
-		console.log('Search value in dbPedia');
-		Decks.getQuery($scope.formData.valQuery)
+		//First search for one person
+		console.log('First Search like name');
+		Decks.getQuerySoft($scope.formData.valQuery)
 			.success(function(data) {
-				$scope.dataReturn = data;
-				//$scope.resultJsonReq = data;
+
+				$scope.firstSearch = data;
+
 			});
 
-	};
+		};
+		//Put new blank value for input search
+		$scope.formData.valQuery = "";
+
+		//After select a person , search object on relation with this person
+		console.log('Search value in dbPedia');
+		Decks.getQueryFull($scope.formData.valQuery)
+			.success(function(data) {
+
+				$scope.lastSearch = data;
+
+			});
 }]);

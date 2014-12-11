@@ -6,6 +6,7 @@ app.config(['$routeProvider',
         when('/home', {
             templateUrl: 'partials/home.html'
         }).
+
         when('/decks', {
             templateUrl: 'partials/deck.html',
             controller: 'decksController'

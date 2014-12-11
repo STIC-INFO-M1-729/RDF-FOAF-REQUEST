@@ -1,4 +1,5 @@
 ﻿var modalModule = angular.module('modalModule', ['ui.bootstrap']);
+var d3_graph = require('');
 
 modalModule.service('modalService', ['$modal', function($modal){
     var modalDefaults = {
