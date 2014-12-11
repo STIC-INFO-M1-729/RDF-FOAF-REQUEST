@@ -27,10 +27,10 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 			$scope.requests = data;
 	});
 
-	$scope.searchQuery = function(){
+	//$scope.searchQuery = function(){
 
 		//First search for one person
-		console.log('First Search like name');
+		/*console.log('First Search like name');
 		Decks.getQuerySoft($scope.formData.valQuery)
 			.success(function(data) {
 
@@ -49,5 +49,5 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 
 				$scope.lastSearch = data;
 
-			});
+			});*/
 }]);
