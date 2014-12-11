@@ -1,16 +1,4 @@
-/**
- * Created by zorg on 09/12/14.
- */
-var models = require('../models/find_model.js');
-var Requete = models.Requete;
-var SparqlClient = require('sparql-client');
-var endpoint = 'http://dbpedia.org/sparql';
-var util = require('util');
-module.exports = function(app) {
-app.get('/deck/search/:search_id', function(req, res) {
-var nameRech = req.params.search_id;
-console.log('Searching for : ' + nameRech);
-var client = new SparqlClient(endpoint);
+
 
 
 
