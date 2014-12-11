@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var searchModule = angular.module('searchModule', ['modalModule']);
 
 // service accessing the USER API of Pop
@@ -38,4 +39,8 @@ decksModule.controller('searchController', ['$scope','$http','Searchs',
 		};
 }]);/**
  * Created by zorg on 09/12/14.
+=======
+/**
+ * Created by funflash on 10/12/14.
+>>>>>>> d5c632389dd762591b7aceacbd48fa471ef6a117
  */
