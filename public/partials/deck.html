@@ -1,30 +1,113 @@
     <!-- SET THE CONTROLLER -->
-<div class="container">
-    <form class="form-wrapper cf col-md-6 col-md-offset-3" ng-controller="decksController">
-        <input type="text" class=" col-md-10 " placeholder="Search" ng-model="formData.valQuery">
-        <button type="submit" class="btn btn-primary btn-lg col-md-2 " ng-click="searchQuery()" >Ok</button>
-        {{TempJSON}}
-    </form>
-    <h5 id="filtres" class="col-md-6 col-md-offset-3">Filtre▾</h5>
-    <div id="lesfiltres" class="form-wrapper col-md-6 col-md-offset-3"> <!--- TODO: ajouter tout les filtre --> </div>
 
-		    <!-- SEARCH LIST -->
-    <div class="container">
+    <div class="searchBar" style="margin-top: 47px">
+        <form method="post" class="form-wrapper cf " ng-controller="decksController">
+            <input type="text" class="  " placeholder="Search" ng-model="formData.valQuery">
+            <button type="submit" class="btn btn-primary btn-lg  " ng-click="searchQuery()" >Ok</button>
 
-        <div id="contact-list" class="row">
-            <!-- LOOP OVER THE contactS IN $scope.contacts -->
-            <div class="col-md-4" ng-repeat="req in requests">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fui-list-small-thumbnails"></span> {{req.search}}</h3>
+
+
+                <h2 ng-click="goOP = !goOP"><span ng-show="!goOP">+</span><span ng-show="goOP">-</span> Oeuvre // Personne</h2>
+            <div ng-show="goOP">
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/writer>" id="writer"/> 
+                <label for="writer">Writer</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/cinematography>" id="cinematography"/> 
+                <label for="cinematography">Cinematography</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/director>" id="director"/> 
+                <label for="director">Director</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/music>" id="music"/> 
+                <label for="music">Music</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/narrator>" id="narrator"/> 
+                <label for="narrator">Narrator</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/starring>" id="starring"/> 
+                <label for="starring">Starring</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/musicComposer>" id="musicComposer"/> 
+                <label for="musicComposer">Music Composer</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/artist>" id="artist"/> 
+                <label for="artist">Artist</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/author>" id="author"/> 
+                <label for="author">Author</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/executiveProducer>" id="executiveProducer"/> 
+                <label for="executiveProducer">Executive Producer</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/artist>" id="performer"/> 
+                <label for="performer">Performer</label><br/>
+            </div>
+                <h2 ng-click="goPP = !goPP"><span ng-show="!goPP">+</span><span ng-show="goPP">-</span> Personne // Personne</h2>
+            <div ng-show="goPP">
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/associatedActs>" id="associatedActs"/> 
+                <label for="associatedActs">Associated Acts</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/associatedBand>" id="associatedBand"/> 
+                <label for="associatedBand">Associated Band</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/associatedMusicalArtist>" id="associatedMusicalArtist"/> 
+                <label for="associatedMusicalArtist">Associated Musical Artist</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/appointer>" id="appointer"/> 
+                <label for="appointer">Appointer</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/nominator>" id="nominator"/> 
+                <label for="nominator">Nominator</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/child>" id="child"/> 
+                <label for="child">Child / Parent</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/influences>" id="influences"/> 
+                <label for="influences">Influences / Influenced By</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/spouse>" id="spouse"/> 
+                <label for="spouse">Spouse</label><br/>
+                </div>
+
+                <h2 ng-click="goEP = !goEP"><span ng-show="!goEP">+</span><span ng-show="goEP">-</span> Evenement // Personne</h2>
+                <div ng-show="goEP">
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/candidate>" id="candidate"/> 
+                <label for="candidate">Candidate</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/guest>" id="guest"/> 
+                <label for="guest">Guest</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/opentheme>" id="opentheme"/> 
+                <label for="opentheme">Opentheme</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/battle>" id="battle"/> 
+                <label for="battle">Battle</label><br/>
                     </div>
-                    <div class="panel-body">
-                        <p>TEST</p>
-                        <p>{{contact.comment}}</p>
-                    </div>
+
+                <h2 ng-click="goLP = !goLP"><span ng-show="!goLP">+</span><span ng-show="goLP">-</span> Lieux // Personne</h2>
+                    <div ng-show="goLP">
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/leaderName>" id="leaderName"/> 
+                <label for="leaderName">Leader Name</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/commander>" id="commander"/> 
+                <label for="leaderName">commander</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/commanderInChief>" id="commanderInChief"/> 
+                <label for="commanderInChief">Commander In Chief</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/birthPlace>" id="birthPlace"/> 
+                <label for="birthPlace">Birth Place</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/ontology/restingPlace>" id="restingPlace"/> 
+                <label for="restingPlace">Resting Place</label><br/> 
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/deathPlace>" id="deathPlace"/> 
+                <label for="deathPlace">Death Place</label><br/>
+                        </div>
+
+
+                <h2 ng-click="goOjP = !goOjP"><span ng-show="!goOjP">+</span><span ng-show="goOjP">-</span> Objet // Personne</h2>
+                        <div ng-show="goOjP">
+                <input type="checkbox" name="options" value="<http://dbpedia.org/property/endorsedBy>" id="endorsedBy"/> 
+                <label for="endorsedBy">Endorsed By</label><br/> 
+</div>
+                <h2>Toutes les relations</h2> 
+                <input type="checkbox" name="options" value="?r" id="all"/> 
+                <label for="all">All</label><br/>
+
+
+
+        </form>
+    </div>
+
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+            <div class="row mt">
+                <div class="col-lg-12">
+                    <p>Place D3 here.</p>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+
+        </section><! --/wrapper -->
+    </section><!-- /MAIN CONTENT -->
+
+
+
+
 

@@ -15,6 +15,10 @@ app.config(['$routeProvider',
             templateUrl: 'partials/deck.html',
             controller: 'decksController'
         }).
+        when('/search', {
+            templateUrl: 'partials/search.html'
+            //controller: 'searchController'
+        }).
         otherwise({
             redirectTo: '/home'
         });
