@@ -20,12 +20,53 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 			 function($scope, $http, Decks) {
 
 	$scope.dataReturn = {};
+	$scope.valeur = "Ouverture";
+	$scope.jsonp = {};
+	$scope.jsongen = {};
 
 	Decks.get()
 		.success(function(data) {
-
+			console.log("je suis dans deck.js côté client, fonction get, avec data = ");
+			console.log(data);
 			$scope.requests = data;
 	});
+
+	$scope.searchQuery = function() {
+		 console.log("Recherche en cours");
+			console.log("Recherche ....");
+			$scope.valeur = "Bonjour";
+			console.log($scope.valeur);
+			Decks.get()
+				.success(function(data) {
+					console.log("je suis dans deck.js côté client, fonction get, avec data = ");
+					console.log(data);
+					$scope.jsonp = data;
+					$scope.jsongen = produitToGenerique(data);
+					var d3_graphe = new D3_GrapheRepresentation();
+					d3_graphe.show($scope.jsongen);
+			});
+			/*Decks.get()
+				.success(function(data) {
+					/*console.log("je suis dans deck.js côté client, fonction get, avec data = ");
+					console.log(data);
+					$scope.requests = data;
+					$scope.valeur = "Bonjour";
+			});*/
+			/*$http.get('/recherche')
+			.success(function(data) {
+		      console.log("je suis dans core.js côté client");
+					$scope.valeur = "Recherche effectuée";
+					$scope.jsonp = data;
+					$scope.jsongen = produitToGenerique(data);
+					//$scope.jsongraph = generiqueToGraph($scope.jsongen);
+					var d3_graphe = new D3_GrapheRepresentation();
+					d3_graphe.show($scope.jsongen);
+		  })
+		  .error(function(data) {
+		      console.log('Error: ' + data);
+		  });*/
+			//$scope.valeur = "Bonjour";
+	}
 
 	//$scope.searchQuery = function(){
 

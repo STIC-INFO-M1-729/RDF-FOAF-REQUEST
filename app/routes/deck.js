@@ -106,11 +106,14 @@ module.exports = function(app) {
             if (err)
                 res.send(err);
 
+						console.log("Je vais faire une recherche, je produit un jsonp côté serveur");
+						res.json([ {"slabel":"coucou", "rlabel":"les", "olabel":"copains"}, {"slabel":"coucou", "rlabel":"les", "olabel":"amis"} ]);
             //console.log(request);
-            res.json(request); // return all users in JSON format
+            //res.json(request); // return all users in JSON format
         });
 
     });
+
     app.get('/deck/resultSimple_id', function(req, res){
 
         console.log('Call /deck/+data --> return previous search value');
