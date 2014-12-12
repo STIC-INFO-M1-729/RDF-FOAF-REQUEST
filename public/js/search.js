@@ -48,5 +48,6 @@ decksModule.controller('searchController', ['$scope','$http','Searchs',
 				$scope.lsSearch = data;
 				//console.log($scope.lsSearch);
 			});
-	};
+		};
 }]);
+
