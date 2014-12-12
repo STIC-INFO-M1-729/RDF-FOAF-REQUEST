@@ -30,17 +30,20 @@ module.exports = function(app) {
 		prefixeQuery = prefixeQuery + "PREFIX dbpedia2: <http://dbpedia.org/property/> ";
 		prefixeQuery = prefixeQuery + "PREFIX dbpedia3: <http://dbpedia.org/ontology/> ";
 		var selectQuery = "SELECT DISTINCT ";
-		selectQuery = selectQuery +"?person ?birth ?name ";
+		//selectQuery = selectQuery +"?person ?birth ?name ";
+		selectQuery = selectQuery +"?person ?name ?birth ?birthplace ?descro ";
 		var coeurQuery = "WHERE {";
-		coeurQuery = coeurQuery + "?person dbpedia3:birthDate ?birth.";
+		coeurQuery = coeurQuery + "?person dc:description ?descro.";
+		coeurQuery = coeurQuery + "?person dbpedia2:placeOfBirth ?birthplace.";
+        coeurQuery = coeurQuery + "?person dbpedia3:birthDate ?birth.";
 		coeurQuery = coeurQuery + "?person foaf:name ?name.";
 		coeurQuery = coeurQuery + "FILTER regex(?name, \"" + nameRech + "\")}";
-		var limitQuery = "LIMIT 10";
+		var limitQuery = "LIMIT 100";
 		var myQuery = prefixeQuery + selectQuery + coeurQuery + limitQuery;
 
 		// -- DEBUG --
-		console.log("Query to " + endpoint);
-		console.log("Query: " + myQuery);
+		//console.log("Query to " + endpoint);
+		//console.log("Query: " + myQuery);
 
 
         ////Before save new params search on mongoDB (Find if exist --> Update / also --> create new)
@@ -58,28 +61,10 @@ module.exports = function(app) {
 
 
         //--DEBUG--
-        console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
-
-        //Prepare query
-        var query = "SELECT DISTINCT ?slabel ?rlabel ?olabel FROM <http://dbpedia.org> WHERE { {} ";
-
-        //Upgrade query with user option
-        if (!Array.isArray(req.body.options)) {
-            query += "UNION" + utilSparql(option,nameRech);
-        }
-        else {
-            req.body.options.forEach(function(opt) {
-                query += "UNION" + utilSparql(nameRech);
-            });
-        }
-
-        //Limit the number of response
-        query += "} LIMIT 500";
-
-        console.log(query);
+        //console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
 
         //Execute Request on Saprql end-point
-        client.query(query)
+        client.query(myQuery)
 		.execute(function(error, results) {
 
             // -- DEBUG --
@@ -93,30 +78,19 @@ module.exports = function(app) {
 			    displayResult = "fail";
             }
 			else {
-
+                //console.log('Le resultat Brut : ');
+                console.log(JSON.stringify(results));
 			    //Binding results
-				var resultat = results.results.bindings;
+			    //Suppression doublons dans les URI
 
 
-				//Format DATA with JSON-Generique parser
-				displayResult = '<table><tr><th>s</th><th>---</th><th>r</th><th>---</th><th>o</th></tr>'; //<th>---</th><th>jsonres</th>
-
-				resultat.forEach(function(entry) {
-						displayResult += '<tr><td>' + entry.slabel.value + '</td><td>&nbsp;|&nbsp;</td>';
-						displayResult += '<td>' + entry.rlabel.value + '</td><td>&nbsp;|&nbsp;</td>';
-						displayResult += '<td>' + entry.olabel.value + '</td></tr>';//<td>&nbsp;|&nbsp;</td>';
-				});
-
-				displayResult += '</table>';
+                res.json(results.results.bindings);
 
 			}
-            console.log(results);
-			//res.send('Résultats de la requête <strong>' + req.body.recherche + '</strong>: <br/>' +
-				//displayResult + form);
 	    });
      });
 
-     app.get('/searchs', function(req, res){
+     app.get('/search', function(req, res){
 
         console.log('Call /searchs --> return filter for search person value');
 

@@ -1,4 +1,4 @@
-var app = angular.module('findApp', ['ngRoute','decksModule']);
+var app = angular.module('findApp', ['ngRoute','decksModule','searchModule','angular.filter']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -16,8 +16,8 @@ app.config(['$routeProvider',
             controller: 'decksController'
         }).
         when('/search', {
-            templateUrl: 'partials/search.html'
-            //controller: 'searchController'
+            templateUrl: 'partials/search.html',
+            controller: 'searchController'
         }).
         otherwise({
             redirectTo: '/home'

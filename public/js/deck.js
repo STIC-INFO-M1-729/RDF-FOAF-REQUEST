@@ -40,7 +40,7 @@ decksModule.controller('decksController', ['$scope','$http','Decks',
 
 		};
 		//Put new blank value for input search
-		$scope.formData.valQuery = "";
+		//$scope.formData.valQuery = "";
 
 		//After select a person , search object on relation with this person
 		console.log('Search value in dbPedia');
