@@ -35,19 +35,16 @@ module.exports = function(app) {
 		var coeurQuery = "WHERE {";
 		coeurQuery = coeurQuery + "?person dc:description ?descro.";
 		coeurQuery = coeurQuery + "?person rdfs:label ?slabel.";
-		coeurQuery = coeurQuery + "?person dbpedia2:placeOfBirth ?birthplace.";
-        coeurQuery = coeurQuery + "?person dbpedia3:birthDate ?birth.";
+		coeurQuery = coeurQuery + "OPTIONAL{?person dbpedia2:placeOfBirth ?birthplace}.";
+        coeurQuery = coeurQuery + "OPTIONAL{?person dbpedia3:birthDate ?birth}.";
 		coeurQuery = coeurQuery + "?person foaf:name ?name.";
 		coeurQuery = coeurQuery + "FILTER regex(?name, \"" + nameRech + "\").";
 		coeurQuery = coeurQuery + "FILTER(lang(?slabel) = 'en')}";
 		var limitQuery = "LIMIT 100";
 		var myQuery = prefixeQuery + selectQuery + coeurQuery + limitQuery;
 
-		// -- DEBUG --
-		//console.log("Query to " + endpoint);
-		//console.log("Query: " + myQuery);
-
-
+        //-------------------------------------------------------------------------------------------
+        //-------------------------- Futur Integration MONGODB --------------------------------------
         ////Before save new params search on mongoDB (Find if exist --> Update / also --> create new)
         //var condition = { search: nameRech };
         //var update = {
@@ -63,8 +60,10 @@ module.exports = function(app) {
 
 
         //--DEBUG--
-        console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
+        //console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
         console.log('Query : ' + myQuery);
+
+
         //Execute Request on Saprql end-point
         client.query(myQuery)
 		.execute(function(error, results) {
@@ -80,33 +79,14 @@ module.exports = function(app) {
 			    displayResult = "fail";
             }
 			else {
-                //console.log('Le resultat Brut : ');
                 console.log(JSON.stringify(results));
-			    //Binding results
-			    //Suppression doublons dans les URI
-
-
                 res.json(results.results.bindings);
 
 			}
 	    });
      });
 
-     app.get('/search', function(req, res){
-
-        console.log('Call /searchs --> return filter for search person value');
-
-        //Get alls previous request and parse
-        //use mongoose to get all previous request in the database
-        requete.find(function(err, request) {
-
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            //console.log(request);
-            res.json(request); // return all users in JSON format
-        });
-
+    app.get('/search', function(req, res){
+        console.log('Call /search ');
     });
 };

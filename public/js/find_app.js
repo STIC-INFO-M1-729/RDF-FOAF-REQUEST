@@ -31,13 +31,6 @@ app.run(function($rootScope) {
             && nextRoute.templateUrl == "partials/home.html" ) {
                 $rootScope.searchLabel = "Search";
             }
-
     });
 });
-
-app.controller('menuCtrl', ['$scope', '$window', '$location',
-                function($scope, $window, $location){
-
-
-}]);
 

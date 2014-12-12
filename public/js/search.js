@@ -7,9 +7,6 @@ decksModule.factory('Searchs', ['$http',function($http) {
 				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT'
 			};
 	return {
-		get : function() {
-			return $http.get('/search');
-		},
 		getQuerySoft : function(searchData) {
 			return $http.get('/search/' + searchData);
 		}
@@ -20,20 +17,10 @@ decksModule.factory('Searchs', ['$http',function($http) {
 decksModule.controller('searchController', ['$scope','$http','Searchs','$location','$rootScope',
 			 function($scope, $http, Searchs, $location, $rootScope) {
 
-	Searchs.get()
-		.success(function(data) {
-			$scope.filtreSearchs = data;
-	});
-
 	$scope.goRestSearch = function(search){
 
-		//console.log("Valeur rechercher sLabel : " + search.slabel.value);
+		//On click on person label ,past slabel argument to decks
 		$rootScope.searchLabel = search.slabel.value;
-		//console.log($rootScope.searchLabel);
-		//console.log('Listing Search Complexe');
-		//console.log(search.person.value);
-		//console.log(search.slabel.value);
-
 		$location.path( "/decks");
 	};
 
@@ -41,14 +28,9 @@ decksModule.controller('searchController', ['$scope','$http','Searchs','$locatio
 	$scope.goSearch = function(){
 
 		//First search for one person
-		console.log('First Search like name');
 		Searchs.getQuerySoft($scope.formData.valSearch)
 			.success(function(data) {
-				//console.log(data);
-				//console.log(data[0].person.value);
-				//Modify
 				$scope.lsSearch = data;
-				//console.log($scope.lsSearch);
 			});
 		};
 }]);

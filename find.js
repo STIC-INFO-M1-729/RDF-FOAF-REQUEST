@@ -23,7 +23,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
 
 app.use(cookieParser());
-//app.use(session({ secret: 'java is a cat', saveUninitialized: true, resave: true, cookie: { maxAge: 86400000 }}));
 
 // routes ======================================================================
 require('./app/routes.js')(app);
@@ -32,5 +31,3 @@ require('./app/routes.js')(app);
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
-
-//test

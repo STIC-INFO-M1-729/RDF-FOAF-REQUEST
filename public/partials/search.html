@@ -28,11 +28,11 @@
             <a ng-click="goRestSearch(search)">{{search.name.value}}</a>
         </li>
         <div class="col-md-10">
-            <a>Date de naissance : {{search.birth.value}}</a>
+            <a>Date de naissance : {{search.birth.value || "undefined"}}</a>
             <br/>
-            <a>Lieux de naissance : {{search.birthplace.value}}</a>
+            <a>Lieux de naissance : {{search.birthplace.value || "undefined"}}</a>
             <br/>
-            <a>Description : {{search.descro.value}}</a>
+            <a>Description : {{search.descro.value || "undefined"}}</a>
         </div>
     </div>
     <!--div result search end-->
