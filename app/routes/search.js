@@ -31,13 +31,15 @@ module.exports = function(app) {
 		prefixeQuery = prefixeQuery + "PREFIX dbpedia3: <http://dbpedia.org/ontology/> ";
 		var selectQuery = "SELECT DISTINCT ";
 		//selectQuery = selectQuery +"?person ?birth ?name ";
-		selectQuery = selectQuery +"?person ?name ?birth ?birthplace ?descro ";
+		selectQuery = selectQuery +"?person ?name ?birth ?birthplace ?descro ?slabel ";
 		var coeurQuery = "WHERE {";
 		coeurQuery = coeurQuery + "?person dc:description ?descro.";
+		coeurQuery = coeurQuery + "?person rdfs:label ?slabel.";
 		coeurQuery = coeurQuery + "?person dbpedia2:placeOfBirth ?birthplace.";
         coeurQuery = coeurQuery + "?person dbpedia3:birthDate ?birth.";
 		coeurQuery = coeurQuery + "?person foaf:name ?name.";
-		coeurQuery = coeurQuery + "FILTER regex(?name, \"" + nameRech + "\")}";
+		coeurQuery = coeurQuery + "FILTER regex(?name, \"" + nameRech + "\").";
+		coeurQuery = coeurQuery + "FILTER(lang(?slabel) = 'en')}";
 		var limitQuery = "LIMIT 100";
 		var myQuery = prefixeQuery + selectQuery + coeurQuery + limitQuery;
 
@@ -61,8 +63,8 @@ module.exports = function(app) {
 
 
         //--DEBUG--
-        //console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
-
+        console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
+        console.log('Query : ' + myQuery);
         //Execute Request on Saprql end-point
         client.query(myQuery)
 		.execute(function(error, results) {

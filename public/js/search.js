@@ -12,16 +12,13 @@ decksModule.factory('Searchs', ['$http',function($http) {
 		},
 		getQuerySoft : function(searchData) {
 			return $http.get('/search/' + searchData);
-		},
-		postQuerycomplexe : function(searchData) {
-			return $http.post('/deck/' + searchData);
 		}
 	};
 }]);
 
 	// inject the User service factory into our controller
-decksModule.controller('searchController', ['$scope','$http','Searchs',
-			 function($scope, $http, Searchs) {
+decksModule.controller('searchController', ['$scope','$http','Searchs','$location','$rootScope',
+			 function($scope, $http, Searchs, $location, $rootScope) {
 
 	Searchs.get()
 		.success(function(data) {
@@ -29,10 +26,15 @@ decksModule.controller('searchController', ['$scope','$http','Searchs',
 	});
 
 	$scope.goRestSearch = function(search){
-		console.log('Listing Search Complexe');
 
-		console.log(search.person.value);
-		Searchs.postQuerycomplexe(search.person.value);
+		//console.log("Valeur rechercher sLabel : " + search.slabel.value);
+		$rootScope.searchLabel = search.slabel.value;
+		//console.log($rootScope.searchLabel);
+		//console.log('Listing Search Complexe');
+		//console.log(search.person.value);
+		//console.log(search.slabel.value);
+
+		$location.path( "/decks");
 	};
 
 

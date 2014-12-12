@@ -111,21 +111,22 @@ module.exports = function(app) {
         });
 
     });
-    app.get('/deck/resultSimple_id', function(req, res){
+    //app.get('/deck/:resultSimple_id', function(req, res){
+    //
+    //    console.log('Call /deck/+data --> return previous search value');
+    //    console.log('lable vaut :' + resultSimple_id);
+    //
+    //    //Get alls previous request and parse
+    //    //use mongoose to get all previous request in the database
+    //    requete.find(function(err, request) {
+    //
+    //        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+    //        if (err)
+    //            res.send(err);
+    //
+    //        //console.log(request);
+    //        res.json(request); // return all users in JSON format
+    //    });
 
-        console.log('Call /deck/+data --> return previous search value');
-
-        //Get alls previous request and parse
-        //use mongoose to get all previous request in the database
-        requete.find(function(err, request) {
-
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
-
-            //console.log(request);
-            res.json(request); // return all users in JSON format
-        });
-
-    });
+    //});
 };

@@ -2,10 +2,8 @@
 
     <div class="searchBar" style="margin-top: 47px">
         <form method="post" class="form-wrapper cf " ng-controller="decksController">
-            <input type="text" class="  " placeholder="Search" ng-model="formData.valQuery">
+            <input type="text" class="  " placeholder="{{somePlaceholder}}" ng-model="formData.valQuery" >
             <button type="submit" class="btn btn-primary btn-lg  " ng-click="searchQuery()" >Ok</button>
-
-
 
                 <h2 ng-click="goOP = !goOP"><span ng-show="!goOP">+</span><span ng-show="goOP">-</span> Oeuvre // Personne</h2>
             <div ng-show="goOP">
@@ -18,7 +16,7 @@
                 <input type="checkbox" name="options" value="<http://dbpedia.org/property/music>" id="music"/> 
                 <label for="music">Music</label><br/> 
                 <input type="checkbox" name="options" value="<http://dbpedia.org/property/narrator>" id="narrator"/> 
-                <label for="narrator">Narrator</label><br/> 
+                <label for="narrator">Narrator</label><br/>
                 <input type="checkbox" name="options" value="<http://dbpedia.org/property/starring>" id="starring"/> 
                 <label for="starring">Starring</label><br/> 
                 <input type="checkbox" name="options" value="<http://dbpedia.org/property/musicComposer>" id="musicComposer"/> 

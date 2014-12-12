@@ -29,7 +29,7 @@ app.run(function($rootScope) {
         //redirect only if both isAuthenticated is false and no token is set
         if (nextRoute !== null
             && nextRoute.templateUrl == "partials/home.html" ) {
-                //$rootScope.bodyBackground = 'bg';
+                $rootScope.searchLabel = "Search";
             }
 
     });
