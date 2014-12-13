@@ -1,6 +1,3 @@
-//var models = require('./models/find_model.js');
-//var requete = models.Requete;
-
 var models = require('./models/find_model');
 var requete = models.Requete;
 

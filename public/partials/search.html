@@ -11,7 +11,6 @@
     <form class="form-wrapper cf col-md-6 col-md-offset-3" role="form">
         <input type="text" class=" col-md-10 " placeholder="Search" ng-model="formData.valSearch">
         <button type="submit" class="btn btn-primary btn-lg col-md-2 " ng-click="goSearch()">Ok</button>
-        {{TempJSON}}
     </form>
 
     <!--{{lsSearch.person}}-->
@@ -29,11 +28,11 @@
             <a ng-click="goRestSearch(search)">{{search.name.value}}</a>
         </li>
         <div class="col-md-10">
-            <a>Date de naissance : {{search.birth.value}}</a>
+            <a>Date de naissance : {{search.birth.value || "undefined"}}</a>
             <br/>
-            <a>Lieux de naissance : {{search.birthplace.value}}</a>
+            <a>Lieux de naissance : {{search.birthplace.value || "undefined"}}</a>
             <br/>
-            <a>Description : {{search.descro.value}}</a>
+            <a>Description : {{search.descro.value || "undefined"}}</a>
         </div>
     </div>
     <!--div result search end-->
