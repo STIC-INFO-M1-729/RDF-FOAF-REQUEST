@@ -3,12 +3,6 @@ var decksModule = angular.module('decksModule', ['modalModule']);
 // service accessing the USER API of Pop
 decksModule.factory('Decks', ['$http', function ($http) {
         return {
-            get: function () {
-                return $http.get('/decks');
-            },
-            /*getQuerySoft: function (searchData) {
-                return $http.get('/deck/search/' + searchData);
-            },*/
             post: function(valQuery, valOptions) {
                 return $http.post('/decks/searchInitial', {recherche: valQuery, options: valOptions});
             }
@@ -25,20 +19,22 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
         $scope.dataReturn = {};
         $scope.valeur = "Ouverture";
         $scope.jsonp = {};
-        $scope.jsongen = {};
 
         $scope.searchQuery = function () {
-            console.log("Recherche en cours");
-            $scope.valeur = $scope.formData.valOptions;
+            $scope.valeur = $scope.formData;
             console.log($scope.valeur);
+            //Appelle post avec les valeurs du formulaire
+            //L'action à réaliser est définie dans app/routes/deck.js
+            //app/routes/deck.js renvoie un json de type liste de triplets
+            //produitToGenerique le transforme en json générique
+            //d3_graphe fait appel à d3_formatteur pour le transformer en jsonGraph
+            //puis d3_graphe affiche le graphe
             Decks.post($scope.formData.valQuery, $scope.formData.valOptions)
                     .success(function (data) {
-                        console.log("je suis dans deck.js côté client, fonction post, avec data = ");
-                        console.log(data);
                         $scope.jsonp = data;
-                        $scope.jsongen = produitToGenerique(data);
+                        var jsongen = produitToGenerique(data);
                         var d3_graphe = new D3_GrapheRepresentation();
-                        d3_graphe.show($scope.jsongen);
+                        d3_graphe.show(jsongen);
                     });
         };
 
