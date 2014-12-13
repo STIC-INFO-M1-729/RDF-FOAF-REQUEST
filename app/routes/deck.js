@@ -12,7 +12,13 @@ var endpoint = 'http://dbpedia.org/sparql';
 
 module.exports = function(app) {
 
-    app.get('/deck/search/:search_id', function(req, res) {
+    app.post('/decks/searchInitial', function(req,res) {
+        console.log(req.body);
+        var jsonRes = [ {"slabel":req.body.recherche, "rlabel":"les", "olabel":"copains"}, {"slabel":"coucou", "rlabel":"les", "olabel":"amis"} ];
+        res.json(jsonRes);
+    });
+    
+    /*app.get('/deck/search/:search_id', function(req, res) {
 
         //Use client for sparql search
         var client = new SparqlClient(endpoint);
@@ -130,7 +136,7 @@ module.exports = function(app) {
             res.json(request); // return all users in JSON format
         });
 
-    });
+    });*/
 };
 
 

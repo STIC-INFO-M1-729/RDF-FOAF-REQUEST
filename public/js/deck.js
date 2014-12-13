@@ -6,8 +6,11 @@ decksModule.factory('Decks', ['$http', function ($http) {
             get: function () {
                 return $http.get('/decks');
             },
-            getQuerySoft: function (searchData) {
+            /*getQuerySoft: function (searchData) {
                 return $http.get('/deck/search/' + searchData);
+            },*/
+            post: function(valQuery, valOptions) {
+                return $http.post('/decks/searchInitial', {recherche: valQuery, options: valOptions});
             }
         };
     }]);
@@ -26,12 +29,11 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
 
         $scope.searchQuery = function () {
             console.log("Recherche en cours");
-            console.log("Recherche ....");
-            $scope.valeur = "Bonjour";
+            $scope.valeur = $scope.formData.valOptions;
             console.log($scope.valeur);
-            Decks.get()
+            Decks.post($scope.formData.valQuery, $scope.formData.valOptions)
                     .success(function (data) {
-                        console.log("je suis dans deck.js côté client, fonction get, avec data = ");
+                        console.log("je suis dans deck.js côté client, fonction post, avec data = ");
                         console.log(data);
                         $scope.jsonp = data;
                         $scope.jsongen = produitToGenerique(data);
