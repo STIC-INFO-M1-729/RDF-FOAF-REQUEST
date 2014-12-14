@@ -14,6 +14,7 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
     function ($scope, $http, Decks, $location, $rootScope) {
 
         //On remplace le champs de recherche par la valeur du $rootScope.searchLabel
+        console.log($rootScope.searchLabel);
         $scope.somePlaceholder = $rootScope.searchLabel;
 
         //$scope.dataReturn = {};

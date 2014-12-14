@@ -6,7 +6,7 @@
 <div class="searchBar" style="margin-top: 47px" >
     <form method="post" class="form-wrapper cf "  >
         <!--- ng-model sera utilisé par public/js/deck.js pour récupérer les valeurs du formulaire -->
-        <input type="text" name="recherche" class="  " placeholder="Search" ng-model="formData.valQuery">
+        <input type="text" name="recherche" class="  " placeholder="{{somePlaceholder}}" ng-model="formData.valQuery">
         <!--- ng-click indique quelle fonction de ng-controller il faut utiliser lors du click -->
         <button type="submit" class="btn btn-primary btn-lg  " ng-click="searchQuery()" >Ok</button>
 

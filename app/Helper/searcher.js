@@ -1,3 +1,7 @@
+/**
+ * Created by zorg on 14/12/14.
+ */
+
 //Import for SparqlClient
 var SparqlClient = require('sparql-client');
 var endpoint = 'http://dbpedia.org/sparql';
@@ -55,7 +59,7 @@ module.exports = function effectuerRecherche(recherche,termine) {
 
         });
 
-        console.log(jsonProduit);
+        //console.log(jsonProduit);
 
         termine.emit('finit',JSON.stringify(jsonProduit));
     });
