@@ -155,6 +155,7 @@ D3_GrapheRepresentation.load = function (json) {
 
             // Quand on clique sur un mot on affiche l'information wikipedia
             .on("click", function (d) {
+                //$('.hastip').data('tooltipsy').hide();
                 d3_utils.show_wikipedia(d.name);
             })
 
@@ -186,10 +187,13 @@ D3_GrapheRepresentation.load = function (json) {
     $('svg g circle').tipsy({
         gravity: 'w',
         html: true,
+        //hideEvent: 'blur',
+        delayOut: 1000,
         title: function () {
+            //$('.hastip').data('tooltipsy').hide();
             var d = this.__data__;
             if (d.type != null) {
-                return "<div>" + d.type + "</div><div class='floatingp'>" + d.name + "</div>";
+                return "<div>" + d.type + "</div><div class='floatingp'>" + d.name + "</div><div> " + d.description + "</div>";
             } else {
                 return "</div><div class='floatingp'>" + d.name + "</div>";
             }

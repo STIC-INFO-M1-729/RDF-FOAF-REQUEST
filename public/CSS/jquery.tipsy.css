@@ -9,7 +9,10 @@
 	background-color: #bfbfbf;
 	color: #000;
 	font-family: Verdana, Arial;
-	max-width: 200px;
+        font-size: 130%;
+	max-width: 400px;
+        max-height: 200px;
+        overflow : scroll;
 	padding: 5px 8px 4px 8px;
 	text-align: center;
 }

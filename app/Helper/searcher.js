@@ -21,21 +21,19 @@ Array.prototype.unique = function ()
     return r;
 }
 
-function trouverType(listOfNodes) {
-    var listOfTypes = {};
-    listOfNodes.forEach(function (entry) {
-        console.log(entry);
-        listOfTypes[entry] = "T " + entry;
-    });
-    console.log("je vais émettre le signal");
-}
-
 function oneLineType(subject) {
     return "UNION { <" + subject + "> rdf:type ?type ; rdfs:label ?slabel. " +
             "?type rdfs:label ?typelabel . " +
             "FILTER(lang(?typelabel) = 'en'). " +
             "FILTER(lang(?slabel) = 'en'). " +
-        "} ";
+            "} ";
+}
+
+function oneLineDescription(subject) {
+    return "UNION { <" + subject + "> dbpedia-owl:abstract ?abstract "+
+            "; rdfs:label ?slabel. " +          
+            "FILTER(lang(?abstract) = 'en'). " +
+            "} ";
 }
 
 module.exports = function effectuerRecherche(recherche, termine) {
@@ -60,12 +58,11 @@ module.exports = function effectuerRecherche(recherche, termine) {
             "FILTER(lang(?o2label) = 'en'). " +
             "} " +
             "} LIMIT 3";
-    //console.log(requete);
-    console.log("requete définie");
 
+    console.log(requete);
+    
     client.query(requete).execute(function (error, results) {
-        console.log("requete exécutée");
-        //console.log(results.results.bindings);
+        console.log("fait " + error);
         var jsonProduit = [];
         if (error) {
             jsonProduit = [
@@ -84,53 +81,76 @@ module.exports = function effectuerRecherche(recherche, termine) {
         listOfNodes = listOfNodes.unique();
 
         var requeteTypes = "SELECT * WHERE { {} ";
-        listOfNodes.forEach(function(entry) {
-           requeteTypes += oneLineType(entry); 
+        listOfNodes.forEach(function (entry) {
+            requeteTypes += oneLineType(entry);
         });
         requeteTypes += "}";
-        
         console.log(requeteTypes);
-        
+
         client.query(requeteTypes).execute(function (error, resTypes) {
-            
-            console.log(resTypes.results.bindings);
+            console.log("fait " + error);
             var listOfTypes = {};
-            
-            resTypes.results.bindings.forEach( function(entry) {
+
+            resTypes.results.bindings.forEach(function (entry) {
                 if (!listOfTypes[entry.slabel.value]) {
                     listOfTypes[entry.slabel.value] = entry.typelabel.value;
                 }
             });
-            
-            results.results.bindings.forEach(function (entry) {
-                var ligne1 = {
-                    slabel: entry.slabel.value,
-                    stype: listOfTypes[entry.slabel.value],
-                    rlabel: entry.rlabel.value,
-                    olabel: entry.olabel.value,
-                    otype: listOfTypes[entry.olabel.value]
 
-                };
-                var ligne2 = {
-                    slabel: entry.olabel.value,
-                    stype: listOfTypes[entry.olabel.value],
-                    rlabel: entry.r1label.value,
-                    olabel: entry.o1label.value,
-                    otype: listOfTypes[entry.o1label.value]
-                };
-                var ligne3 = {
-                    slabel: entry.o1label.value,
-                    stype: listOfTypes[entry.o1label.value],
-                    rlabel: entry.r2label.value,
-                    olabel: entry.o2label.value,
-                    otype: listOfTypes[entry.o2label.value]
-                };
-                jsonProduit.push(ligne1);
-                jsonProduit.push(ligne2);
-                jsonProduit.push(ligne3);
-
+            var requeteDescriptions = "SELECT * WHERE { {} ";
+            listOfNodes.forEach(function (entry) {
+                requeteDescriptions += oneLineDescription(entry);
             });
-            termine.emit('finit', JSON.stringify(jsonProduit));
+            requeteDescriptions += "}";
+            console.log(requeteDescriptions);
+
+            client.query(requeteDescriptions).execute(function (error, resDescriptions) {
+                console.log("fait "+ error);
+                var listOfDescriptions = {};
+
+                resDescriptions.results.bindings.forEach(function (entry) {
+                    if (!listOfDescriptions[entry.slabel.value]) {
+                        listOfDescriptions[entry.slabel.value] = entry.abstract.value;
+                    }
+                });
+
+                results.results.bindings.forEach(function (entry) {
+                    var ligne1 = {
+                        slabel: entry.slabel.value,
+                        stype: listOfTypes[entry.slabel.value],
+                        sdescription: listOfDescriptions[entry.slabel.value],
+                        rlabel: entry.rlabel.value,
+                        olabel: entry.olabel.value,
+                        otype: listOfTypes[entry.olabel.value],
+                        odescription: listOfDescriptions[entry.olabel.value]
+                    };
+                    var ligne2 = {
+                        slabel: entry.olabel.value,
+                        stype: listOfTypes[entry.olabel.value],
+                        sdescription: listOfDescriptions[entry.olabel.value],
+                        rlabel: entry.r1label.value,
+                        olabel: entry.o1label.value,
+                        otype: listOfTypes[entry.o1label.value],
+                        odescription: listOfDescriptions[entry.o1label.value]
+                    };
+                    var ligne3 = {
+                        slabel: entry.o1label.value,
+                        stype: listOfTypes[entry.o1label.value],
+                        sdescription: listOfDescriptions[entry.o1label.value],
+                        rlabel: entry.r2label.value,
+                        olabel: entry.o2label.value,
+                        otype: listOfTypes[entry.o2label.value],
+                        odescription: listOfDescriptions[entry.o2label.value]
+                    };
+                    jsonProduit.push(ligne1);
+                    jsonProduit.push(ligne2);
+                    jsonProduit.push(ligne3);
+
+                });
+                //console.log(jsonProduit);
+                termine.emit('finit', JSON.stringify(jsonProduit));
+            });
+
         });
 
     });

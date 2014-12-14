@@ -173,7 +173,8 @@ D3_Formatter.prototype.to_tree = function(tree){
 			infos.push(node.nom);
 			infos.push({
 				type: node.type,
-				color: typeNode[node.type]
+				color: typeNode[node.type],
+                                description: node.description
 			});
 
 			// On construit une map avec key l'id et value le nom et des infos supplémentaires
@@ -199,6 +200,7 @@ D3_Formatter.prototype.to_tree = function(tree){
 						size: 500,
 						group: nodes[root_id][1].color,
 						type: nodes[root_id][1].type,
+                                                description: nodes[root_id][1].description,
 						children: []
 					};
 					node = d3_tree;
@@ -231,6 +233,7 @@ D3_Formatter.prototype.to_tree = function(tree){
 												size: 100 + Math.floor(Math.random()*200),
 												group: nodes[child][1].color,
 												type: nodes[child][1].type,
+                                                                                                description: nodes[child][1].description,
 												children: []
 											};
 											node.children.push(nodeChild);

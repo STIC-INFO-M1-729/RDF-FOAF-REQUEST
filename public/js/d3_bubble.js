@@ -187,7 +187,7 @@ D3_BubbleRepresentation.load = function (json) {
         title: function () {
             var d = this.__data__;
             if (d.type != null) {
-                return "<div>" + d.type + "</div><div class='floatingp'>" + d.name + "</div>";
+                return "<div>" + d.type + "</div><div class='floatingp'>" + d.name + "</div><div>" + d.description + "</div>";
             } else {
                 return "</div><div class='floatingp'>" + d.name + "</div>";
             }

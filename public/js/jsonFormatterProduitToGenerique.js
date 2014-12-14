@@ -19,14 +19,16 @@ function produitToGenerique(data) {
     var listOfRelations = [];
     var types = {};
     var graph = [];
+    var description = {};
 
     data.forEach(function (entry) {
         listOfNodes.push(entry.slabel);
         types[entry.slabel] = entry.stype;
+        description[entry.slabel] = entry.sdescription;
         listOfRelations.push(entry.rlabel);
         listOfNodes.push(entry.olabel);
-                types[entry.olabel] = entry.otype;
-
+        types[entry.olabel] = entry.otype;
+        description[entry.olabel] = entry.odescription;
     });
 
     listOfNodes = listOfNodes.unique();
@@ -53,7 +55,7 @@ function produitToGenerique(data) {
 
     var noeuds = [];
     listOfNodes.forEach(function (entry, index) {
-        noeuds.push({id: index, nom: entry, type: types[entry], description: "blablabla"});
+        noeuds.push({id: index, nom: entry, type: types[entry], description: description[entry]});
     });
 
 
