@@ -45,29 +45,29 @@ module.exports = function(app) {
 
         //--DEBUG--
         //console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
-        //console.log('Query : ' + myQuery);
+        console.log('Query : ' + myQuery);
 
 
         //Execute Request on Saprql end-point
-        client.query(myQuery)
-        .execute(function(error, results) {
-
-            // -- DEBUG --
-			//console.log(req.body);
-
-            //Prepare Return Results
-			var displayResult;
-
-			if (results == null) {
-			    //On error
-			    displayResult = "fail";
-            }
-			else {
-                //console.log(JSON.stringify(results));
-                res.json(results.results.bindings);
-
-			}
-        });
+        //client.query(myQuery)
+        //.execute(function(error, results) {
+        //
+        //    // -- DEBUG --
+			////console.log(req.body);
+        //
+        //    //Prepare Return Results
+			//var displayResult;
+        //
+			//if (results == null) {
+			//    //On error
+			//    displayResult = "fail";
+        //    }
+			//else {
+        //        //console.log(JSON.stringify(results));
+        //        res.json(results.results.bindings);
+        //
+			//}
+        //});
      });
 
     app.get('/search', function(req, res){

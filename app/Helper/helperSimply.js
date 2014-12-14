@@ -98,8 +98,8 @@ module.exports = function adaptQueryWithOption(valCherche,options) {
 	//Add filter to english '@en'
 	var filterEnQuery = "FILTER(lang(?slabel) = 'en')}";
 
-
-	var limitQuery = "LIMIT 100";
+	//Recupere la limit Query
+	var limitQuery = "LIMIT " + options.limitQuery;
 
 	//Add All Variables
 
