@@ -196,14 +196,14 @@ D3_GrapheRepresentation.load = function (json) {
 
     // Si on clique sur le bouton ayant la classe
     // zoom on appelle la fonction zoomClick
-    //d3.selectAll('.zoom').on('click', d3_utils.zoomClick);
+    d3.selectAll('.zoom').on('click', d3_utils.zoomClick);
 
     // Si on clique sur le bouton ayant la classe
     // dragAndDrop on appelle la fonction dragAndDrop
     d3.selectAll('.dragAndDrop')
             .attr("value", "0")
             .on('click', function () {
-                //d3_utils.dragAndDrop(force);
+                d3_utils.dragAndDrop(force);
             });
 
     // On d�sactive les boutons inutiles pour cette vue
