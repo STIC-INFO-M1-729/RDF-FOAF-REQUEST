@@ -54,7 +54,7 @@ D3_NodeLinkTreeRepresentation.load = function (json) {
     var width = $("#contentCenter").width(),
             height = $("#contentCenter").height();
 
-    var diameter = width;
+    var diameter = Math.min(width,height);
 
     var color = d3.scale.category20();
 

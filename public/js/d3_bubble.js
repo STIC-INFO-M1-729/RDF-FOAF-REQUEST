@@ -36,7 +36,7 @@ D3_BubbleRepresentation.load = function (json) {
 
     //Variables indiquant les paramètres de notre visualisation (marges, taille, couleurs)
     var margin = 20,
-            diameter = $("#contentCenter").width();
+            diameter = Math.min($("#contentCenter").width(),$("#contentCenter").height()) - 20;
 
     var color = d3.scale.linear()
             .domain([-1, 5])
