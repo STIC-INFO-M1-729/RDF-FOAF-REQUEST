@@ -9,6 +9,7 @@ var zoom = null;
  * @param data : le json sous forme d'objet json ou de chaine de caract�res
  */
 D3_GrapheRepresentation.prototype.show = function (data) {
+    console.log("je suis dans d3_graph");
     // data is file path
     if (typeof data === "string") {
         d3.json(data, function (error, root) {

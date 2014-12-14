@@ -3,7 +3,7 @@ var decksModule = angular.module('decksModule', ['modalModule']);
 // service accessing the USER API of Pop
 decksModule.factory('Decks', ['$http', function ($http) {
         return {
-            post: function(valQuery, valOptions) {
+            post: function (valQuery, valOptions) {
                 return $http.post('/decks/searchInitial', {recherche: valQuery, options: valOptions});
             }
         };
@@ -31,6 +31,14 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
                         if ($scope.vue == "tree") {
                             var d3_tree = new D3_NodeLinkTreeRepresentation();
                             d3_tree.show(jsongen);
+                        }
+                        else if ($scope.vue == "bubble") {
+                            var d3_bubble = new D3_BubbleRepresentation();
+                            d3_bubble.show(jsongen);
+                        }
+                        else if ($scope.vue == "indented") {
+                            var d3_collapsible = new D3_TreeRepresentation();
+                            d3_collapsible.show(jsongen);
                         }
                         else {
                             var d3_graphe = new D3_GrapheRepresentation();

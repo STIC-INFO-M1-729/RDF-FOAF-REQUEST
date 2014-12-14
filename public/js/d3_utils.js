@@ -227,8 +227,6 @@ function changeGraph(links, nameRelations, colorLink){
 D3_Utils.prototype.showRelation = function(json, representation, colorLink) {
 	// On recupere les relations utilisees pour ce json
 	var data = json.relationsUsed;
-        console.log("Relations récupérées par la fonction showRelation");
-        console.log(data);
 	var paragraphs = d3.select('.selectRelation')
 		.on("change",function() {
 				// On recupere ce que l'utilisateur a choisi

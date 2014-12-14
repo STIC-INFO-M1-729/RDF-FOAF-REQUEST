@@ -103,6 +103,10 @@
         <label for="graphView">Graphe</label><br/>
         <input type="radio" ng-model="vue" value="tree" id="treeView"/> 
         <label for="treeView">Arbre circulaire</label><br/>
+        <input type="radio" ng-model="vue" value="indented" id="indentedView"/> 
+        <label for="indentedView">Arbre indenté</label><br/>
+        <input type="radio" ng-model="vue" value="bubble" id="bubbleView"/> 
+        <label for="bubbleView">Arbre à bulles</label><br/>
     </form>
 </div>		
 
@@ -110,9 +114,11 @@
 
     <form method="post" class="form-wrapper cf "  >
 
-        <select class="selectRelation" multiple="" size="3">
-            <option selected=""> None... </option>
-        </select>
+        <p>Relations trouvées :
+            <select class="selectRelation" multiple="" size="3">
+                <option selected=""> None... </option>
+            </select>
+        </p>
 
         <div id="wikipedia"></div>
     </form>
