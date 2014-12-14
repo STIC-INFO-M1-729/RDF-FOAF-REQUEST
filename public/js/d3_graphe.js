@@ -206,6 +206,6 @@ D3_GrapheRepresentation.load = function (json) {
                 d3_utils.dragAndDrop(force);
             });
 
-    // On d�sactive les boutons inutiles pour cette vue
-    d3.selectAll('.rotate').attr("value", "0").attr("class", "inactif");
+    d3.selectAll('.rotate').on('click', function() { console.log('inactif'); });
+
 }

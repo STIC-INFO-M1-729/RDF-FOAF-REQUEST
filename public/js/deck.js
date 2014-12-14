@@ -16,13 +16,9 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
         //On remplace le champs de recherche par la valeur du $rootScope.searchLabel
         $scope.somePlaceholder = $rootScope.searchLabel;
 
-        $scope.dataReturn = {};
-        $scope.valeur = "Ouverture";
-        $scope.jsonp = {};
+        //$scope.dataReturn = {};
 
         $scope.searchQuery = function () {
-            $scope.valeur = $scope.formData;
-            console.log($scope.valeur);
             //Appelle post avec les valeurs du formulaire
             //L'action à réaliser est définie dans app/routes/deck.js
             //app/routes/deck.js renvoie un json de type liste de triplets
@@ -31,12 +27,15 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
             //puis d3_graphe affiche le graphe
             Decks.post($scope.formData.valQuery, $scope.formData.valOptions)
                     .success(function (data) {
-                        $scope.jsonp = data;
                         var jsongen = produitToGenerique(data);
-                        /*var d3_graphe = new D3_GrapheRepresentation();
-                        d3_graphe.show(jsongen);*/
-                        var d3_tree = new D3_NodeLinkTreeRepresentation();
-                        d3_tree.show(jsongen);
+                        if ($scope.vue == "tree") {
+                            var d3_tree = new D3_NodeLinkTreeRepresentation();
+                            d3_tree.show(jsongen);
+                        }
+                        else {
+                            var d3_graphe = new D3_GrapheRepresentation();
+                            d3_graphe.show(jsongen);
+                        }
                     });
         };
 

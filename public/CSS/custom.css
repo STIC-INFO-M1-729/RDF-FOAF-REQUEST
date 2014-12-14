@@ -447,6 +447,16 @@ body                    {  }
 }
 
 
+.form-wrapper input[type=radio]{
+    width: auto;
+
+    height: 31px;
+    margin-top: 0;
+    margin-right: 5px;
+    margin-left: 40px;
+}
+
+
 .searchBar .form-wrapper{
     height: 100%;
     overflow-y: scroll;
