@@ -224,6 +224,14 @@ body                    {  }
     left: 0;
 }
 
+.searchBarRight{
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    background: #424a5d;
+    right:0;
+}
+
 
 
 /**********************************************/

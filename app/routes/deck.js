@@ -1,7 +1,6 @@
 //Import modéle Find
 var models = require('../models/find_model.js');
-var searcher = require('../models/searcher.js'); //Ne fonctionne pas
-//Voir erreur lignes 22 - 23
+var searcher = require('../models/searcher.js');
 var requete = models.Requete;
 
 //Outil de visualisation JSON
@@ -20,12 +19,7 @@ module.exports = function (app) {
         //On appelle le modèle searcher.js pour qu'il produise le json répondant à la requête
         console.log(searcher);
         var jsonRes = searcher(req.body.recherche);
-        //TypeError: Object function () {} has no method 'effectuerRecherche'
-
-        /*var jsonRes = [
-            {"slabel": req.body.recherche, "rlabel": "les", "olabel": "copains"},
-            {"slabel": "coucou", "rlabel": "les", "olabel": "amis"}
-        ];*/
+        
         //On renvoie ce json en résultat, il sera pris en charge
         //côté client par public/js/deck.js
         res.json(jsonRes);

@@ -37,7 +37,7 @@ D3_GrapheRepresentation.load = function (json) {
     /***************************************************/
     /*					Outils						   */
     /***************************************************/
-    //var d3_utils = new D3_Utils();
+    var d3_utils = new D3_Utils();
 
     /***************************/
     /*		Relations 		   */
@@ -154,7 +154,7 @@ D3_GrapheRepresentation.load = function (json) {
 
             // Quand on clique sur un mot on affiche l'information wikipedia
             .on("click", function (d) {
-                //d3_utils.show_wikipedia(d.name);
+                d3_utils.show_wikipedia(d.name);
             })
 
             // Quand on double clique sur un mot on recharge son json
