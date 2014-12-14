@@ -33,8 +33,10 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
                     .success(function (data) {
                         $scope.jsonp = data;
                         var jsongen = produitToGenerique(data);
-                        var d3_graphe = new D3_GrapheRepresentation();
-                        d3_graphe.show(jsongen);
+                        /*var d3_graphe = new D3_GrapheRepresentation();
+                        d3_graphe.show(jsongen);*/
+                        var d3_tree = new D3_NodeLinkTreeRepresentation();
+                        d3_tree.show(jsongen);
                     });
         };
 
