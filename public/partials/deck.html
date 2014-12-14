@@ -111,8 +111,34 @@
         <div id="wikipedia"></div>
     </form>
 
+
 </div>		
 
+<div class="tool-container">
+    <div class="tool-items">
+        <a class="tool-item gradient zoom" id="zoom_in" title="Zoom in">
+            <i class="icon-zoom-in"></i>
+        </a>
+        <a class="tool-item gradient zoom" id="zoom_out" title="Zoom out">
+            <i class="icon-zoom-out"></i>
+        </a>
+        <a class="tool-item gradient zoom" id="intial_scale" title="Initial zoom">
+            <i class="icon-close"></i>
+        </a>
+        <a class="tool-item gradient dragAndDrop" id="drag_and_drop" title="Drag and Drop" value="0">
+            <i class="icon-drag-and-drop"></i>
+        </a>
+        <a class="tool-item gradient rotate" id="rotate" title="Rotate" value="0">
+            <i class="icon-rotate"></i>
+        </a>
+        <a class="tool-item gradient fullscreen" id="full_screen" title="Full screen" onClick="fullscreenClick();">
+            <i class="icon-full-screen"></i>
+        </a>
+        <a class="tool-item gradient print" id="print" title="Print" onClick="PrintElem('#contentCenter');">
+            <i class="icon-print"></i>
+        </a>
+    </div>
+</div>
 
 <section id="main-content">
     <section class="wrapper site-min-height">
