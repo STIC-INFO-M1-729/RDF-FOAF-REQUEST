@@ -103,10 +103,14 @@
 <div class="searchBarRight" style="margin-top: 47px; z-index: 100;" >
 
     <form method="post" class="form-wrapper cf "  >
-    <input type="button" value="Clic on me"/><br/>
-    <div id="wikipedia"></div>
+
+        <select class="selectRelation" multiple="" size="3">
+            <option selected=""> None... </option>
+        </select>
+
+        <div id="wikipedia"></div>
     </form>
-    
+
 </div>		
 
 
@@ -115,8 +119,8 @@
         <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
         <div class="row mt">
             <div class="col-lg-12">
-                <p>json produit {{ jsonp }}</p>
-                <p>Place D3 here. {{ valeur }} </p>
+                <p>json produit {{ jsonp}}</p>
+                <p>Place D3 here. {{ valeur}} </p>
                 <div id="contentCenter" style="width:500px; height:500px;"></div>
             </div>
         </div>

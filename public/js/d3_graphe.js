@@ -29,7 +29,6 @@ D3_GrapheRepresentation.prototype.show = function (data) {
  * @param json : fichier json rendu par la recherche
  */
 D3_GrapheRepresentation.load = function (json) {
-//d3.chart.dependencyWheel = function(options) {
 
     var formatter = new D3_Formatter();
     var graph = formatter.to_graph(json);
@@ -43,7 +42,7 @@ D3_GrapheRepresentation.load = function (json) {
     /*		Relations 		   */
     /**************************/
     var colorLink = d3.scale.category20();
-    //d3_utils.showRelation(json, "graph", colorLink);
+    d3_utils.showRelation(json, "graph", colorLink);
 
     /***************************/
     /*		Graphe	 		   */

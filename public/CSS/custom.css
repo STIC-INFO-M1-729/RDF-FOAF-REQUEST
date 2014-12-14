@@ -224,14 +224,24 @@ body                    {  }
     left: 0;
 }
 
+/** D3_Utils **/
 .searchBarRight{
     width: 250px;
     height: 100%;
     position: fixed;
     background: #424a5d;
     right:0;
+    color:white;
 }
 
+.selectRelation {
+    width: 100%;
+    color:black;
+}
+
+#wikipedia {
+    width: 100%;
+}
 
 
 /**********************************************/
