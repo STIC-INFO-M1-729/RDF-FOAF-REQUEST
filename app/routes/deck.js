@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 //Import modéle Find
 var models = require('../models/find_model.js');
 var searcher = require('../Helper/searcher.js');
+//var typefinder = require('../Helper/typefinder.js');
 var requete = models.Requete;
 
 //Outil de visualisation JSON
@@ -24,7 +25,8 @@ module.exports = function (app) {
         
         //On renvoie ce json en résultat, il sera pris en charge
         //côté client par public/js/deck.js
-        termine.on('finit',function(message) { 
+        
+        termine.on('finit',function(message) {
             res.json(JSON.parse(message));
         });
     });

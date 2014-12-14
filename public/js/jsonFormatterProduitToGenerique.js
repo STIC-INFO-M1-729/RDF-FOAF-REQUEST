@@ -1,15 +1,15 @@
-Array.prototype.unique = function()
+Array.prototype.unique = function ()
 {
-	var n = {},r=[];
-	for(var i = 0; i < this.length; i++) 
-	{
-		if (!n[this[i]]) 
-		{
-			n[this[i]] = true; 
-			r.push(this[i]); 
-		}
-	}
-	return r;
+    var n = {}, r = [];
+    for (var i = 0; i < this.length; i++)
+    {
+        if (!n[this[i]])
+        {
+            n[this[i]] = true;
+            r.push(this[i]);
+        }
+    }
+    return r;
 }
 
 
@@ -17,47 +17,51 @@ function produitToGenerique(data) {
 
     var listOfNodes = [];
     var listOfRelations = [];
+    var types = {};
     var graph = [];
-    
-    data.forEach(function(entry) {
+
+    data.forEach(function (entry) {
         listOfNodes.push(entry.slabel);
+        types[entry.slabel] = entry.stype;
         listOfRelations.push(entry.rlabel);
         listOfNodes.push(entry.olabel);
+                types[entry.olabel] = entry.otype;
+
     });
-    
+
     listOfNodes = listOfNodes.unique();
     listOfRelations = listOfRelations.unique();
-        
-    listOfNodes.forEach(function(entry,index) {
+
+    listOfNodes.forEach(function (entry, index) {
         graph[index] = {
-            noeud:index
+            noeud: index
         }
     });
-    
-    data.forEach(function(entry) {
+
+    data.forEach(function (entry) {
         if (graph[listOfNodes.indexOf(entry.slabel)][entry.rlabel]) {
             graph[listOfNodes.indexOf(entry.slabel)][entry.rlabel]
                     .push(
-                        listOfNodes.indexOf(entry.olabel)
-                    );
+                            listOfNodes.indexOf(entry.olabel)
+                            );
         }
         else {
             graph[listOfNodes.indexOf(entry.slabel)][entry.rlabel] =
-                    [ listOfNodes.indexOf(entry.olabel) ];
+                    [listOfNodes.indexOf(entry.olabel)];
         }
     });
-    
+
     var noeuds = [];
-    listOfNodes.forEach(function(entry,index) {
-        noeuds.push({id:index, nom:entry});
+    listOfNodes.forEach(function (entry, index) {
+        noeuds.push({id: index, nom: entry, type: types[entry], description: "blablabla"});
     });
-    
+
 
     var retour = {
-        "noeuds": noeuds ,
+        "noeuds": noeuds,
         "relations": listOfRelations,
-        "graphe":graph 
+        "graphe": graph
     };
-    
+
     return retour;
 }
