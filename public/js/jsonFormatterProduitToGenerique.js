@@ -1,7 +1,5 @@
 function produitToGenerique(data) {
 
-	console.log("je produit un gen depuis jsongen.js côté client");
-	console.log(data);
 	var retour = {
 		"noeuds": [
 			{ "id": 1, "nom": "coucou" },

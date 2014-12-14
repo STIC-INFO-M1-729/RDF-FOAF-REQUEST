@@ -12,7 +12,7 @@ D3_Utils.prototype.show_wikipedia = function(name) {
 	var url = "http://en.m.wikipedia.org/wiki/"+s;
 	// On ajoute des balises a la div qui a l'identifiant wikipedia
 	$('#wikipedia').html(
-			"<p><b>Informations on "+name+"</b> "+
+			"<p>Informations on "+name+" "+
 			"<iframe id='wikiframe' src='"+url+"' "+
 			"width='98%' frameborder='0'></iframe>"
 			);
@@ -22,11 +22,14 @@ D3_Utils.prototype.show_wikipedia = function(name) {
 	$('#wikiframe').css('height', size+'px');
 }
 
+//Cette fonction servait Ã  relancer la recherche en double cliquant sur un noeud
+//Il faudra la refaire en tenant compte de notre nouvelle archi -> Ã  voir si on
+//le fait ou pas.
 /**
 * Charge un nouveau json en fonction du nom 
 * @param d : objet node sur lequel l'utilisateur a clique
 */
-D3_Utils.prototype.load_json = function(d) {
+/*D3_Utils.prototype.load_json = function(d) {
 
 	// On recupere les relations selectionnees par l'utilisateur pour le filtre
 	var valeurs = [];
@@ -36,10 +39,10 @@ D3_Utils.prototype.load_json = function(d) {
 	
 	var profondeur = $("#quantite").val();
 	
-	$('#search').val(d.name); //Mise à jour du mot demandé
+	$('#search').val(d.name); //Mise ï¿½ jour du mot demandï¿½
 	var search = d.name;
 
-	//Récupération de la source de données demandée
+	//Rï¿½cupï¿½ration de la source de donnï¿½es demandï¿½e
 	var wordnet = $('#WN').attr('checked'); 
 	var dbpedia = $('#DB').attr('checked'); 
 	var cmdAction = "";	
@@ -56,7 +59,7 @@ D3_Utils.prototype.load_json = function(d) {
 		cmdAction = "search_debian";
 	}
 	$("#contentCenter").html('<img id="loading" src="/bundles/CartoRepresentationsBundle/images/ajax-loader.gif>');
-	//Utilisation d'ajax pour placer le résultat dans le conteneur
+	//Utilisation d'ajax pour placer le rï¿½sultat dans le conteneur
 	$.ajax({
 		type: "POST",
 		url: url,
@@ -94,7 +97,7 @@ D3_Utils.prototype.load_json = function(d) {
 		}
 	});
 	return false;
-}
+}*/
 
 
 function move(d) {

@@ -9,6 +9,7 @@ var zoom = null;
  * @param data : le json sous forme d'objet json ou de chaine de caract�res
  */
 D3_GrapheRepresentation.prototype.show = function (data) {
+    console.log("je suis dans d3_graph");
     // data is file path
     if (typeof data === "string") {
         d3.json(data, function (error, root) {
@@ -29,7 +30,6 @@ D3_GrapheRepresentation.prototype.show = function (data) {
  * @param json : fichier json rendu par la recherche
  */
 D3_GrapheRepresentation.load = function (json) {
-//d3.chart.dependencyWheel = function(options) {
 
     var formatter = new D3_Formatter();
     var graph = formatter.to_graph(json);
@@ -37,13 +37,13 @@ D3_GrapheRepresentation.load = function (json) {
     /***************************************************/
     /*					Outils						   */
     /***************************************************/
-    //var d3_utils = new D3_Utils();
+    var d3_utils = new D3_Utils();
 
     /***************************/
     /*		Relations 		   */
     /**************************/
     var colorLink = d3.scale.category20();
-    //d3_utils.showRelation(json, "graph", colorLink);
+    d3_utils.showRelation(json, "graph", colorLink);
 
     /***************************/
     /*		Graphe	 		   */
@@ -154,7 +154,7 @@ D3_GrapheRepresentation.load = function (json) {
 
             // Quand on clique sur un mot on affiche l'information wikipedia
             .on("click", function (d) {
-                //d3_utils.show_wikipedia(d.name);
+                d3_utils.show_wikipedia(d.name);
             })
 
             // Quand on double clique sur un mot on recharge son json
@@ -197,16 +197,16 @@ D3_GrapheRepresentation.load = function (json) {
 
     // Si on clique sur le bouton ayant la classe
     // zoom on appelle la fonction zoomClick
-    //d3.selectAll('.zoom').on('click', d3_utils.zoomClick);
+    d3.selectAll('.zoom').on('click', d3_utils.zoomClick);
 
     // Si on clique sur le bouton ayant la classe
     // dragAndDrop on appelle la fonction dragAndDrop
     d3.selectAll('.dragAndDrop')
             .attr("value", "0")
             .on('click', function () {
-                //d3_utils.dragAndDrop(force);
+                d3_utils.dragAndDrop(force);
             });
 
-    // On d�sactive les boutons inutiles pour cette vue
-    d3.selectAll('.rotate').attr("value", "0").attr("class", "inactif");
+    d3.selectAll('.rotate').on('click', function() { console.log('inactif'); });
+
 }

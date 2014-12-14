@@ -22,29 +22,26 @@
               <input type="text" class=" col-md-12 " name="options" placeholder="Fonction (Architecte, Policier, ...)" ng-model="formData.valSearchOption.titleFunction"> <br/>
         </div>
 
-    <h5  class="titleSearch col-md-6 col-md-offset-3">Resultats▾</h5>
-    <div id="result-search-list" class="col-md-6 col-md-offset-3" ng-repeat="search in lsSearch | unique:'person.value'">
-        <li>
-            <a ng-click="goRestSearch(search)">{{search.name.value}}</a>
-        </li>
-        <div class="col-md-10">
-            <a ng-if="search.birth.value">Date de naissance : {{search.birth.value}}</a>
-            <br ng-if="search.birth.value"/>
-
-            <a ng-if="search.birthplace.value">Lieux de naissance : {{search.birthplace.value}}</a>
-            <br ng-if="search.birthplace.value"/>
-
-            <a ng-if="search.descro.value">Description : {{search.descro.value}}</a>
-            <br ng-if="search.descro.value"/>
-
-            <div ng-if="search.picture.value">
-                <img ng-src="{{search.picture.value}}" style="width:200px;height:200px ">
+    <div  class="col-md-12">
+    <div id="result-search-list" class="col-md-4 " ng-repeat="search in lsSearch | unique:'person.value'">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" ng-click="goRestSearch(search)"> {{search.name.value}}</h3>
+                <div ng-if="search.picture.value">
+                    <img ng-src="{{search.picture.value}}" style="width:200px;height:200px ">
+                </div>
             </div>
-            <br/>
+            <div ng-if="search.descro.value" class="panel-body">
+               <p>{{search.descro.value}}</p>
+            </div>
+            <div  ng-if="search.birth.value" class="panel-body">
+                <p><span>Naissance</span> : {{search.birth.value}}</p>
+            </div>
+            <div  ng-if="search.birthplace.value" class="panel-body">
+                <p><span>Lieux naissance</span> : {{search.birthplace.value}}</p>
+            </div>
         </div>
     </div>
-
-
-    <!--div result search end-->
+    </div>
 </div>
 
