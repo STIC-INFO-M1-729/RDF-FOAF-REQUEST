@@ -1,4 +1,4 @@
-var app = angular.module('findApp', ['ngRoute','decksModule','searchModule','angular.filter']);
+var app = angular.module('findApp', ['ngRoute','decksModule','searchModule','angular.filter','modalModule']);
 
 app.config(['$routeProvider',
   function($routeProvider) {

@@ -1,6 +1,6 @@
 //Import modéle Find
 var models = require('../models/find_model.js');
-var searcher = require('../models/searcher.js').Searcher; //Ne fonctionne pas
+//var searcher = require('../Helper/searcher.js');
 //Voir erreur lignes 22 - 23
 var requete = models.Requete;
 
@@ -9,7 +9,7 @@ var util = require('util');
 
 //Import for SparqlClient
 var SparqlClient = require('sparql-client');
-var utilSparql = require('./sparql_request_formatteur.js');
+var utilSparql = require('../Helper/sparql_request_formatteur.js');
 var endpoint = 'http://dbpedia.org/sparql';
 
 module.exports = function (app) {
@@ -19,8 +19,11 @@ module.exports = function (app) {
         console.log(req.body);
         //On appelle le modèle searcher.js pour qu'il produise le json répondant à la requête
         console.log(searcher);
-        //searcher.effectuerRecherche(req.body.recherche);
+        //var mySearcher = searcher(req.body.recherche);
         //TypeError: Object function () {} has no method 'effectuerRecherche'
+
+        console.log(mySearcher);
+
 
         var jsonRes = [
             {"slabel": req.body.recherche, "rlabel": "les", "olabel": "copains"},
@@ -28,7 +31,7 @@ module.exports = function (app) {
         ];
         //On renvoie ce json en résultat, il sera pris en charge
         //côté client par public/js/deck.js
-        res.json(jsonRes);
+        res.json(mySearcher);
     });
 
     /*app.get('/deck/search/:search_id', function(req, res) {

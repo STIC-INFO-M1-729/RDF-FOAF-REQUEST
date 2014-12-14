@@ -10,8 +10,8 @@ modalModule.service('modalService', ['$modal', function($modal){
     };
 
     var modalOptions = {
-        closeButtonText: 'Close',
-        actionButtonText: 'OK',
+        //closeButtonText: 'Close',
+        //actionButtonText: 'OK',
         headerText: 'Proceed?',
         bodyText: 'Perform this action?'
     };
