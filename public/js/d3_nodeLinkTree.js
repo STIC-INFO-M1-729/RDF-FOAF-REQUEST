@@ -54,7 +54,7 @@ D3_NodeLinkTreeRepresentation.load = function (json) {
     var width = $("#contentCenter").width(),
             height = $("#contentCenter").height();
 
-    var diameter = Math.min(width,height);
+    var diameter = Math.max(width, height);
 
     var color = d3.scale.category20();
 
@@ -139,9 +139,10 @@ D3_NodeLinkTreeRepresentation.load = function (json) {
                 return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)";
             })
             .text(function (d) {
-                var sansEspace = new RegExp(/\s/);
-                if (sansEspace.test(d.name.toString()) == false)
+                if (d.name.toString().length < 15)
                     return d.name;
+                else
+                    return d.name.toString().substr(0, 10) + " ... ";
             })
             .attr("cursor", "pointer")
             .on("click", function (d) {

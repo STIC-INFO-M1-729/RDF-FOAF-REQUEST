@@ -1,13 +1,14 @@
 function D3_BubbleRepresentation() {
 }
 
+//Problème à résoudre : si le parent a un enfant unique, le parent et l'enfant sont confondus.
+
 /** 
  * Fonction show : appelle la fonction load en lui passant le json
  *
  * @param data : le json sous forme d'objet json ou de chaine de caractères
  */
 D3_BubbleRepresentation.prototype.show = function (data) {
-    console.log("je suis dans bubble");
     // data is file path
     if (typeof data === "string") {
         d3.json(data, function (error, root) {
@@ -101,8 +102,8 @@ D3_BubbleRepresentation.load = function (json) {
                 else if (sansEspace.test(d.parent.name.toString()) == false)
                     d3_utils.show_wikipedia(d.parent.name);
 
-            })
-            .on("dblclick", function (d) {
+            });
+            /*.on("dblclick", function (d) {
                 var d3_utils = new D3_Utils();
                 var sansEspace = new RegExp(/\s/);
                 if (sansEspace.test(d.name.toString()) == false)
@@ -111,7 +112,7 @@ D3_BubbleRepresentation.load = function (json) {
                     d3_utils.load_json(d.children[0]);
                 else if (sansEspace.test(d.parent.name.toString()) == false)
                     d3_utils.load_json(d.parent.name);
-            });
+            });*/
 
     //On ajoute le texte représentant le noeud dans chaque cercle.
     var text = container.selectAll("text")
@@ -119,16 +120,17 @@ D3_BubbleRepresentation.load = function (json) {
             .enter()
             .append("text")
             .attr("class", "label")
-            /*.style("fill-opacity", function(d) { return d.parent === treeJson ? 1 : 0; })
-             .style("display", function(d) { return d.parent === treeJson ? null : "none"; })
-             .text(function(d) { return d.name; });*/
-            .style("display", function (d) {
+            /*.style("display", function (d) {
                 var sansEspace = new RegExp(/\s/);
                 return sansEspace.test(d.name.toString()) ? "none" : null;
-            })
+            })*/
             .style("font-size", '10px')
             .text(function (d) {
-                return d.name;
+                 if (d.name.toString().length < 15)
+                    return d.name;
+                else
+                    return d.name.toString().substr(0,10) + " ... ";
+                //return d.name;
             });
 
     //On ajoute un title pour voir les définitions en entier lorsque les noeuds contiennent plus d'un mot
@@ -140,7 +142,7 @@ D3_BubbleRepresentation.load = function (json) {
 
     //Gestion du zoom pour faire un focus sur un cercle
     d3.select("#contentCenter")
-            .style("background", color(-1))
+            //.style("background", color(-1))
             .on("click", function () {
                 zoomfonc(treeJson);
             });
@@ -160,12 +162,6 @@ D3_BubbleRepresentation.load = function (json) {
                         zoomTo(i(t));
                     };
                 });
-
-        /*transition.selectAll("text")
-         .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-         .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-         .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-         .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });*/
     }
 
     //Zoom sur une position
