@@ -24,11 +24,21 @@ decksModule.controller('searchController', ['$scope','$http','Searchs','$locatio
 
 
 	$scope.goSearch = function(){
-		//var rem = JSON.stringify($scope.formData);
-		//console.log(rem);
+
+
 		$scope.valueLoading = true;
 
-		console.log($scope.formData);
+		//Test si on à des options
+		// Si oui on ajout l'option de limit de query
+		// Si non on creer l'objet valSearchOption et on ajoute l'option limitQuery dedans
+		if(typeof $scope.formData.valSearchOption !== 'undefined'){
+			$scope.formData.valSearchOption.limitQuery = $rootScope.limitQuery;
+		}else{
+			$scope.formData.valSearchOption = {};
+			$scope.formData.valSearchOption.limitQuery = $rootScope.limitQuery;
+		}
+
+		//console.log($scope.formData.valSearchOption);
 		//First search for one person
 		//console.log(JSON.stringify($scope.formData));
 		Searchs.post($scope.formData.valSearch,$scope.formData.valSearchOption)

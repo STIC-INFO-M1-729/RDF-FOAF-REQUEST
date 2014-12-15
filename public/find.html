@@ -52,7 +52,6 @@
         <script src="./js/d3_bubble.js"></script>
         <script src="./js/d3_collapsible.js"></script>
 
-
     </head>
 
     <body id="">
@@ -62,6 +61,12 @@
             <div class="text-center col-md-1 menu"><a href="#/home"> Home</a></div>
             <div class="text-center col-md-1 menu"><a href="#/search"> Search</a></div>
             <div class="text-center col-md-1 menu"><a href="#/decks"> Desk</a></div>
+            <div class="text-center col-md-1 menu"><a>DP-Pedia : {{etataServDbpedia}}</a> </div>
+            <div class="col-md-3 menu">
+                <a class="pull-left" style="padding-right: 15px;" > Limit Request  </a>
+                <input type="text" style="color: #ff0000;" class="col-md-4" name="limitrequest" placeholder="1000" ng-model="limitQuery" ng-init="limitQuery='1000'">
+
+            </div>
         </div>
         <div  ng-view></div>
 
