@@ -9,7 +9,6 @@ var zoom = null;
  * @param data : le json sous forme d'objet json ou de chaine de caract�res
  */
 D3_GrapheRepresentation.prototype.show = function (data) {
-    console.log("je suis dans d3_graph");
     // data is file path
     if (typeof data === "string") {
         d3.json(data, function (error, root) {
@@ -146,9 +145,11 @@ D3_GrapheRepresentation.load = function (json) {
             .attr("dy", ".35em")
             .attr("class", "text")
             .text(function (d) {
-                var sansEspace = new RegExp(/\s/);
-                if (sansEspace.test(d.name.toString()) == false)
+                /*var sansEspace = new RegExp(/\s/);*/
+                if (d.name.toString().length < 15)
                     return d.name;
+                else
+                    return d.name.toString().substr(0,10) + " ... ";
             })
             .attr("cursor", "pointer")
 
