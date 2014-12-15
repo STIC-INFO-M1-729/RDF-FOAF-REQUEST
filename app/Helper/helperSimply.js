@@ -16,7 +16,7 @@ module.exports = function adaptQueryWithOption(valCherche,options) {
 	var selectQuery = "SELECT DISTINCT ";
 
 	//Defautlt --> All is conserve
-	var valueQuery = "?person ?name ?birth ?birthplace ?descro ?slabel ?function ?picture";
+	var valueQuery = "?person ?name ?birth ?birthplace ?descro ?slabel ?picture ?function";
 
 	//Query heart
 	var heartQuery = " WHERE {" +
@@ -98,8 +98,8 @@ module.exports = function adaptQueryWithOption(valCherche,options) {
 	//Add filter to english '@en'
 	var filterEnQuery = "FILTER(lang(?slabel) = 'en')}";
 
-
-	var limitQuery = "LIMIT 100";
+	//Recupere la limit Query
+	var limitQuery = "LIMIT " + options.limitQuery;
 
 	//Add All Variables
 

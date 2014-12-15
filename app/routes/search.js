@@ -45,7 +45,7 @@ module.exports = function(app) {
 
         //--DEBUG--
         //console.log('Searching for : ' + nameRech + ' -- With option : ' + option);
-        //console.log('Query : ' + myQuery);
+        console.log('Query : ' + myQuery);
 
 
         //Execute Request on Saprql end-point
