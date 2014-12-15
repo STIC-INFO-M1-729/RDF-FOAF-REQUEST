@@ -17,9 +17,20 @@ decksModule.controller('decksController', ['$scope', '$http', 'Decks', '$locatio
         console.log($rootScope.searchLabel);
         $scope.somePlaceholder = $rootScope.searchLabel;
 
+
         //$scope.dataReturn = {};
 
         $scope.searchQuery = function () {
+
+            //Add limit Query
+            if(typeof $scope.formData.valOptions !== 'undefined'){
+                $scope.formData.valOptions.limitQuery = $rootScope.limitQuery;
+            }else{
+                $scope.formData.valOptions = {};
+                $scope.formData.valOptions.limitQuery = $rootScope.limitQuery;
+            }
+
+
             //Appelle post avec les valeurs du formulaire
             //L'action à réaliser est définie dans app/routes/deck.js
             //app/routes/deck.js renvoie un json de type liste de triplets
