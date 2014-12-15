@@ -38,7 +38,7 @@ decksModule.controller('searchController', ['$scope','$http','Searchs','$locatio
 			$scope.formData.valSearchOption.limitQuery = $rootScope.limitQuery;
 		}
 
-		console.log($scope.formData.valSearchOption);
+		//console.log($scope.formData.valSearchOption);
 		//First search for one person
 		//console.log(JSON.stringify($scope.formData));
 		Searchs.post($scope.formData.valSearch,$scope.formData.valSearchOption)

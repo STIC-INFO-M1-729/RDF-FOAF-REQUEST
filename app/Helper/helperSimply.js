@@ -16,7 +16,7 @@ module.exports = function adaptQueryWithOption(valCherche,options) {
 	var selectQuery = "SELECT DISTINCT ";
 
 	//Defautlt --> All is conserve
-	var valueQuery = "?person ?name ?birth ?birthplace ?descro ?slabel ?function ?picture";
+	var valueQuery = "?person ?name ?birth ?birthplace ?descro ?slabel ?picture ?function";
 
 	//Query heart
 	var heartQuery = " WHERE {" +
