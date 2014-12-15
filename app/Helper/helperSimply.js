@@ -24,7 +24,6 @@ module.exports = function adaptQueryWithOption(valCherche,options) {
 					 "?person rdfs:label ?slabel." +
 					 "?person foaf:name ?name.";
 
-
 	/*Query Option -----------
 	Add optional and filter here
 	Test for name search :
