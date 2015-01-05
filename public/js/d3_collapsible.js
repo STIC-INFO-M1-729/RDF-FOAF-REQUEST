@@ -270,7 +270,9 @@ D3_TreeRepresentation.load = function (json) {
 
         // On ajoute des etiquettes sur les noeuds
         $('svg g .node').tipsy({
-            gravity: 'w',
+            alignTo:'cursor',
+            gravity:'n',
+            offset:[50,-50],
             html: true,
             title: function () {
                 var d = this.__data__;

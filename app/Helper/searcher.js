@@ -1,67 +1,56 @@
-/**
- * Created by zorg on 14/12/14.
- */
 
 //Import for SparqlClient
 var SparqlClient = require('sparql-client');
 var endpoint = 'http://dbpedia.org/sparql';
 
+//Construire requete :
+module.exports = function construireRequete(recherche, options, termine) {
 
-Array.prototype.unique = function ()
-{
-    var n = {}, r = [];
-    for (var i = 0; i < this.length; i++)
-    {
-        if (!n[this[i]])
-        {
-            n[this[i]] = true;
-            r.push(this[i]);
+    console.log("LES OPTIONS");
+    console.log(options);
+    console.log("FIN OPTIONS");
+    
+    var client = new SparqlClient(endpoint);
+    var query = "SELECT DISTINCT * FROM <http://dbpedia.org> WHERE { {} ";
+    var optQuery = "";
+
+    //Construct with Option
+    if (typeof options !== 'undefined') {
+
+        for (var attributename in options) {
+            if (attributename !== 'limitQuery') {
+                optQuery += "UNION" + block(options[attributename], recherche);
+            }
         }
     }
-    return r;
-}
+    if (optQuery == "") {
+        optQuery += "UNION" + block("?r", recherche);
+    }
+    query = query + optQuery + "} LIMIT " + options.limitQuery;
+    //return query;
 
-function oneLineType(subject) {
-    return "UNION { <" + subject + "> rdf:type ?type ; rdfs:label ?slabel. " +
-            "?type rdfs:label ?typelabel . " +
-            "FILTER(lang(?typelabel) = 'en'). " +
-            "FILTER(lang(?slabel) = 'en'). " +
-            "} ";
-}
+    /*var requete = "SELECT DISTINCT * " +
+     "WHERE { {} UNION {" +
+     "?s ?r ?o ; rdfs:label \"Barack Obama\"@en, ?slabel . " +
+     "?o ?r1 ?o1 ; rdfs:label ?olabel . " +
+     "?o1 ?r2 ?o2 ; rdfs:label ?o1label . " +
+     "?o2 rdfs:label ?o2label .  " +
+     "?r rdfs:label ?rlabel .  " +
+     "?r1 rdfs:label ?r1label . " +
+     "?r2 rdfs:label ?r2label . " +
+     "FILTER(lang(?slabel) = 'en'). " +
+     "FILTER(lang(?rlabel) = 'en'). " +
+     "FILTER(lang(?olabel) = 'en'). " +
+     "FILTER(lang(?r1label) = 'en'). " +
+     "FILTER(lang(?o1label) = 'en'). " +
+     "FILTER(lang(?r2label) = 'en'). " +
+     "FILTER(lang(?o2label) = 'en'). " +
+     "} " +
+     "} LIMIT 3";*/
 
-function oneLineDescription(subject) {
-    return "UNION { <" + subject + "> dbpedia-owl:abstract ?abstract "+
-            "; rdfs:label ?slabel. " +          
-            "FILTER(lang(?abstract) = 'en'). " +
-            "} ";
-}
+    console.log(query);
 
-module.exports = function effectuerRecherche(recherche, termine) {
-
-    var client = new SparqlClient(endpoint);
-
-    var requete = "SELECT DISTINCT * " +
-            "WHERE { {} UNION {" +
-            "?s ?r ?o ; rdfs:label \"Barack Obama\"@en, ?slabel . " +
-            "?o ?r1 ?o1 ; rdfs:label ?olabel . " +
-            "?o1 ?r2 ?o2 ; rdfs:label ?o1label . " +
-            "?o2 rdfs:label ?o2label .  " +
-            "?r rdfs:label ?rlabel .  " +
-            "?r1 rdfs:label ?r1label . " +
-            "?r2 rdfs:label ?r2label . " +
-            "FILTER(lang(?slabel) = 'en'). " +
-            "FILTER(lang(?rlabel) = 'en'). " +
-            "FILTER(lang(?olabel) = 'en'). " +
-            "FILTER(lang(?r1label) = 'en'). " +
-            "FILTER(lang(?o1label) = 'en'). " +
-            "FILTER(lang(?r2label) = 'en'). " +
-            "FILTER(lang(?o2label) = 'en'). " +
-            "} " +
-            "} LIMIT 3";
-
-    console.log(requete);
-    
-    client.query(requete).execute(function (error, results) {
+    client.query(query).execute(function (error, results) {
         console.log("fait " + error);
         var jsonProduit = [];
         if (error) {
@@ -105,7 +94,7 @@ module.exports = function effectuerRecherche(recherche, termine) {
             console.log(requeteDescriptions);
 
             client.query(requeteDescriptions).execute(function (error, resDescriptions) {
-                console.log("fait "+ error);
+                console.log("fait " + error);
                 var listOfDescriptions = {};
 
                 resDescriptions.results.bindings.forEach(function (entry) {
@@ -155,6 +144,84 @@ module.exports = function effectuerRecherche(recherche, termine) {
 
     });
 
-
-
 };
+
+Array.prototype.unique = function ()
+{
+    var n = {}, r = [];
+    for (var i = 0; i < this.length; i++)
+    {
+        if (!n[this[i]])
+        {
+            n[this[i]] = true;
+            r.push(this[i]);
+        }
+    }
+    return r;
+};
+
+function oneLineType(subject) {
+    return "UNION { <" + subject + "> rdf:type ?type ; rdfs:label ?slabel. " +
+            "?type rdfs:label ?typelabel . " +
+            "FILTER(lang(?typelabel) = 'en'). " +
+            "FILTER(lang(?slabel) = 'en'). " +
+            "} ";
+}
+
+function oneLineDescription(subject) {
+    return "UNION { <" + subject + "> dbpedia-owl:abstract ?abstract " +
+            "; rdfs:label ?slabel. " +
+            "FILTER(lang(?abstract) = 'en'). " +
+            "} ";
+}
+
+//Création d'une recherche avec une relation donnée
+function block(relation, recherche) {
+    var askedLabel = "";
+
+    return "{" +
+            // ----------
+            "?s " + relation + " ?o. " +
+            "?o ?r1 ?o1. " +
+            "?o1 ?r2 ?o2. " +
+            "?o1 ?r2 ?o2. " +
+            "?s rdfs:label \"" + recherche + "\"@en." +
+            "?s rdfs:label ?slabel. " +
+            relation + " rdfs:label ?rlabel. " +
+            "?o rdfs:label ?olabel. " +
+            "?r1 rdfs:label ?r1label. " +
+            "?o1 rdfs:label ?o1label. " +
+            "?r2 rdfs:label ?r2label. " +
+            "?o2 rdfs:label ?o2label. " +
+            "?o1 rdf:type foaf:Person. " +
+            "?o2 rdf:type foaf:Person. " +
+            "FILTER(lang(?slabel) = 'en'). " +
+            "FILTER(lang(?rlabel) = 'en'). " +
+            "FILTER(lang(?olabel) = 'en'). " +
+            "FILTER(lang(?r1label) = 'en'). " +
+            "FILTER(lang(?o1label) = 'en'). " +
+            "FILTER(lang(?r2label) = 'en'). " +
+            "FILTER(lang(?o2label) = 'en'). " +
+            "}"
+            + "UNION" +
+            "{" +
+            "?o1 ?r2 ?o2." +
+            "?o ?r1 ?o1." +
+            "?o" + relation + "?s." +
+            "?o2 rdfs:label ?o2label." +
+            "?r2 rdfs:label ?r2label." +
+            "?o1 rdfs:label ?o1label." +
+            "?r1 rdfs:label ?r1label." +
+            "?o rdfs:label ?olabel." +
+            "?r rdfs:label ?rlabel." +
+            "?s rdfs:label ?slabel." +
+            "?o2 rdfs:label \"" + recherche + "\"@en." +
+            "FILTER(lang(?o2label) = 'en')." +
+            "FILTER(lang(?r2label) = 'en')." +
+            "FILTER(lang(?o1label) = 'en')." +
+            "FILTER(lang(?r1label) = 'en')." +
+            "FILTER(lang(?olabel) = 'en')." +
+            "FILTER(lang(?rlabel) = 'en')." +
+            "FILTER(lang(?slabel) = 'en')." +
+            "}";
+}

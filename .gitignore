@@ -7,3 +7,4 @@
 /package.json*
 npm-debug.log
 bower.json
+/nbproject/private/
