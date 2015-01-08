@@ -182,8 +182,8 @@ function block(relation, recherche) {
     return "{" +
             // ----------
             "?s " + relation + " ?o. " +
+            "?s ?r ?o. " +
             "?o ?r1 ?o1. " +
-            "?o1 ?r2 ?o2. " +
             "?o1 ?r2 ?o2. " +
             "?s rdfs:label \"" + recherche + "\"@en." +
             "?s rdfs:label ?slabel. " +
@@ -205,9 +205,10 @@ function block(relation, recherche) {
             "}"
             + "UNION" +
             "{" +
-            "?o1 ?r2 ?o2." +
-            "?o ?r1 ?o1." +
-            "?o" + relation + "?s." +
+            "?o2 " + relation + " ?o1." +
+            "?o2 ?r2 ?o1." +
+            "?o1 ?r1 ?o." +
+            "?o ?r ?s." +
             "?o2 rdfs:label ?o2label." +
             "?r2 rdfs:label ?r2label." +
             "?o1 rdfs:label ?o1label." +
