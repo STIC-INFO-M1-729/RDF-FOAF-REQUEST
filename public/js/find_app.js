@@ -31,7 +31,7 @@ app.run(function($rootScope,$http) {
             && nextRoute.templateUrl == "partials/home.html" ) {
                 $rootScope.searchLabel = "Search";
                 //Re-init value for request Limit to 1000
-                $rootScope.limitQuery = "1000";
+                $rootScope.limitQuery = "100";
             }
 
         //for every change route --> Test if DBpedia is accessible (OK)
